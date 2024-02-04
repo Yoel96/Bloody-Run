@@ -6,10 +6,15 @@ class Enemy{
         this.counter=0
     }
 
+    start(){
+
+
+    }
+
     spawnEnemies(){
 
         this.counter++
-        if(counter>700){
+        if(this.counter>700){
             //crear enemigo y mostrarlo por pantalla
 
             this.counter=0

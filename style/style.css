@@ -1,0 +1,26 @@
+body{
+    overflow: hidden;
+}
+
+
+#ground, #ground2{
+    position: absolute;
+    top:90vh;
+    height: 10vh;
+    width: 100vw;
+    
+}
+
+#ground{
+
+    left: 0vw;
+    background-color: rgb(92, 92, 253);
+
+}
+
+#ground2{
+
+    left: 100vw;
+    background-color: rgb(141, 141, 255);
+
+}

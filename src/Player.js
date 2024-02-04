@@ -6,6 +6,9 @@ class Player{
         
     }
 
+    start(){
+        
+    }
 
     move(direction){
 

@@ -32,7 +32,7 @@ class GameManager{
 
     startGame(){
         //creamos objeto del enemigo, del jugador y del entorno
-        this.player=  new Player()
+        this.player= new Player()
         this.player.start()
         this.enviroment= new Enviroment()
         this.enviroment.start()
@@ -66,7 +66,7 @@ class GameManager{
                 self.onMove= false
             }
         
-            if ( event.code=== "KeyD" && !self.onMove) {
+            if ( event.code=== "KeyD" && self.onMove) {
                 self.onMove= false
             }
         })
@@ -76,14 +76,13 @@ class GameManager{
     moveController(){
 
         this.moveInterval=setInterval(()=>{
-
+            self.enemy.spawnEnemies()
             if(self.onMove){
-                self.enemy.spawnEnemies()
-                self.player.move(direction)
+                self.player.move(self.direction)
                 self.enviroment.move(self.direction)
                 if(self.enemies.length>0){
                     self.enemies.forEach((enemy)=>{
-                        enemy.move(direction)
+                        enemy.move(self.direction)
                     })
                 }
                 
@@ -98,7 +97,7 @@ class GameManager{
 
     timeController(){
 
-        timeInterval= setInterval(()=>{
+        this.timeInterval= setInterval(()=>{
             self.currentTime++
             if(self.currentTime>=(self.matchTimer/3)){
 
@@ -163,3 +162,8 @@ class GameManager{
 
 
 }
+
+
+
+const gM= new GameManager(4000,3)
+gM.startGame()
