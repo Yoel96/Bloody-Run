@@ -1,70 +1,107 @@
 class Lightning{
 
-    constructor(leftPosition,lightnings){
-     
+    constructor(){
+        self=this
         this.lightningSprite
-        this.leftPosition=leftPosition
-        this.topPosition= 0
-        this.intervalId
+        this.leftPosition
+        this.lightningWidth=200
+        this.topPosition= -10
+        this.lightnings=[]
+        this.moveInterval
+        this.direction=-1
+        this.onMOving=false
  
     }
 
-    start(){
+    createLightning(){
 
+        this.leftPosition=Math.floor(Math.random()*100)
         this.lightningSprite=document.createElement("div")
         this.lightningSprite.classList.add("enemyObject")
         this.lightningSprite.style.left= this.leftPosition+"vw"
         document.getElementById("enemiesSpawn").appendChild(this.lightningSprite)
-       
-
+        this.move()
+        this.checkInputs()
     }
 
 
-    move(isMoving,direction){
+    checkInputs(){
+
+       
+        window.addEventListener("keydown", (event) => {
+            if (event.code=== "KeyA" && !self.onMOving)  {
+                self.onMOving=true
+                self.direction= -1  
+               
+            }
         
-        this.topPosition++
-        this.lightningSprite.style.top=this.topPosition+"vh"
-    
+            if ( event.code=== "KeyD" && !self.onMOving) {
+                self.onMOving=true
+                self.direction= 1   
+            }
+        })
 
-        if(isMoving){
+        window.addEventListener("keyup", (event) => {
+            if (event.code=== "KeyA" && self.onMOving)  {
+                self.onMOving= false
+            }
+        
+            if ( event.code=== "KeyD" && self.onMOving) {
+                self.onMOving= false
+            }
+        })
 
 
-            if (direction === 1) {
-            
-                this.leftPosition--
-                this.lightningSprite.style.left= this.leftPosition+"vw"
-            
-            }else{
-                this.leftPosition++
-                this.lightningSprite.style.left= this.leftPosition+"vw"
+
+    }
+
+    move(){
+        
+      
+        
+
+        let moveInterval=setInterval(()=>{
+ 
+            this.topPosition++
+            this.lightningSprite.style.top=this.topPosition+"vh"
+        
+            if(this.topPosition>110){
 
 
             }
-            
-            
-
-
-        }
-        
-
-
-
-
-        
-        if(this.topPosition>110){
-            this.removeLightning()
-          
-        }
-
-    }
     
+            if(self.onMOving){
+    
+    
+                if (self.direction === 1) {
+                
+                    this.leftPosition--
+                    this.lightningSprite.style.left= this.leftPosition+"vw"
+                
+                }else{
+                    this.leftPosition++
+                    this.lightningSprite.style.left= this.leftPosition+"vw"
+    
+    
+                }
+                
+                
+    
+    
+            }
 
-    removeLightning(){
 
+        },16)
+       
 
-        this.lightningSprite.remove()
+        
+      
 
     }
+
+
+   
+ 
 
 
 

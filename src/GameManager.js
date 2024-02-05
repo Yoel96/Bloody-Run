@@ -8,15 +8,14 @@ class GameManager{
         this.progress=0
         this.moveInterval
         this.timeInterval
+        this.spawnInterval
         this.player
         this.playerLives=playerLives
-        this.enemies=[]
-        this.storm
         this.enviroment
         this.onMove=false
         this.direction=1
-        this.moveController= this.moveController.bind(this)
-
+        this.lightnings=[]
+ 
     }
 
 
@@ -32,9 +31,8 @@ class GameManager{
 
     startGame(){
         //creamos objeto del enemigo, del jugador y del entorno
-        this.player= new Player()
+        this.player= new Player(80, 45, 10)
         this.player.start()
-        this.storm= new Storm()
         this.enviroment= new Enviroment()
         this.enviroment.start()
         this.onGame()
@@ -45,54 +43,26 @@ class GameManager{
     onGame(){
         //manejar el juego
         this.timeController()
-        this.moveController()
+         this.spawnLightning()
         //inputs de los botones
-        window.addEventListener("keydown", (event) => {
-            if (event.code=== "KeyA" && !self.onMove)  {
-                self.onMove=true
-                self.storm.direction= -1
-                self.direction= -1  
-               
-            }
-        
-            if ( event.code=== "KeyD" && !self.onMove) {
-                self.onMove=true
-                self.storm.direction=1
-                self.direction= 1   
-            }
-        })
-
-        window.addEventListener("keyup", (event) => {
-            if (event.code=== "KeyA" && self.onMove)  {
-                self.onMove= false
-            }
-        
-            if ( event.code=== "KeyD" && self.onMove) {
-                self.onMove= false
-            }
-        })
+     
     }
 
+ 
 
-    moveController(){
+    spawnLightning(){
 
-        this.moveInterval=setInterval(()=>{
-            
-            self.storm.spawnLightning()
-            self.storm.moveLightning()
-            if(self.onMove){
-                 self.enviroment.move(self.direction)
-                 self.storm.isMoving=true
-                 
-            }else{
+        this.spawnInterval= setInterval(()=>{
+    
+            let lightning= new Lightning()
+            //console.log(lightning)
+            lightning.createLightning()
+            this.lightnings.push(lightning)
 
-                self.storm.isMoving=false
-            }
-        },16)
+        },1000)
 
 
     }
-
     
     timeController(){
 

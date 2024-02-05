@@ -1,11 +1,12 @@
 class Storm{
 
-    constructor(isMoving,direction){
+    constructor(isMoving, direction, player){
         
         this.lightnings=[]
         this.counter=0
         this.isMoving=isMoving
         this.direction=direction
+        this.player=player
 
     }
 
@@ -16,7 +17,7 @@ class Storm{
 
     }
 
-
+/* 
     spawnLightning(){
 
         this.counter++
@@ -27,14 +28,14 @@ class Storm{
             lightning.start()
             this.lightnings.push(lightning)
             this.counter=0
-            this.removeLightning()
+             
         
         }
 
 
 
 
-    }
+    } */
 
 
 
@@ -46,7 +47,8 @@ class Storm{
             this.lightnings.forEach((lightning)=>{
                
                 lightning.move(this.isMoving,this.direction)
-                
+         
+
             })
 
 
@@ -58,6 +60,28 @@ class Storm{
 
     }
     
+
+    checkCollisions(){
+
+        let playerCheck= this.player
+         this.lightnings.forEach((lightning)=>{
+               
+            if( lightning.leftPosition < ( playerCheck.leftPosition +  player.width) &&
+            (lightning.leftPosition + this.width) > this.player.x &&
+            this.y < (this.player.y + this.player.height) &&
+            (this.y + this.height) > this.player.y){
+              this.player.isDead = true
+            }
+
+
+        })
+
+
+
+    }
+
+
+
     removeLightning(){
         
         
