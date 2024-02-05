@@ -39,6 +39,15 @@ body{
 }
 
 
+#castle{
+    position: absolute;
+    width: 20vw;
+    height: 30vh;
+    top:60vh;
+    left: 110vw;
+    background-color: blue;
+
+}
 
 .enemyObject{
 

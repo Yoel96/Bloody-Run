@@ -120,7 +120,7 @@ class Lightning{
  
     removeLightning(){
 
-        console.log(this.lightnings)
+       // console.log(this.lightnings)
 
         document.getElementById("enemiesSpawn").removeChild(this.lightningSprite)
         clearInterval(this.moveInterval)

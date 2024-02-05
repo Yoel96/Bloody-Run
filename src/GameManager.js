@@ -5,7 +5,7 @@ class GameManager{
         self=this
         this.matchTimer=matchTimer
         this.currentTime=0
-        this.progress=0
+      
         this.moveInterval
         this.timeInterval
         this.spawnInterval
@@ -33,7 +33,7 @@ class GameManager{
         //creamos objeto del enemigo, del jugador y del entorno
         this.player= new Player(80, 45, 10)
         this.player.start()
-        this.enviroment= new Enviroment()
+        this.enviroment= new Enviroment(this.player)
         this.enviroment.start()
         this.onGame()
     }
@@ -68,7 +68,13 @@ class GameManager{
 
         this.timeInterval= setInterval(()=>{
             this.player.checkIsAlive()
-            console.log(this.player.isAlive)
+            console.log(this.enviroment.isOnCastle)
+            if( this.enviroment.isOnCastle){
+                
+                this.gameWin()
+
+            }
+
             if(this.player.isAlive){
                 self.currentTime++
                 if(self.currentTime>=(self.matchTimer/3)){
@@ -108,18 +114,21 @@ class GameManager{
 
 
         }
-
-        if(progress>=1100){
+/*
+        if(progress>=6){
 
             this.gameWin()
 
-        }
+        }*/
 
     }
 
     gameWin(){
-
-
+        
+        clearInterval(this.moveInterval)
+        clearInterval(this.timeInterval)
+        clearInterval(this.spawnInterval)
+        clearInterval(this.enviroment.enviromentInterval)
 
     }
 
