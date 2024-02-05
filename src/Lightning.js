@@ -1,21 +1,23 @@
 class Lightning{
 
-    constructor(){
+    constructor(lightnings,player){
         self=this
         this.lightningSprite
         this.leftPosition
-        this.lightningWidth=200
+        this.lightningWidth=10
         this.topPosition= -10
-        this.lightnings=[]
+        this.lightnings=lightnings
         this.moveInterval
         this.direction=-1
         this.onMOving=false
+        this.player=player
+        this.lightningHeight= 10
  
     }
 
     createLightning(){
 
-        this.leftPosition=Math.floor(Math.random()*100)
+        this.leftPosition=Math.floor(Math.random()*70)
         this.lightningSprite=document.createElement("div")
         this.lightningSprite.classList.add("enemyObject")
         this.lightningSprite.style.left= this.leftPosition+"vw"
@@ -60,14 +62,14 @@ class Lightning{
       
         
 
-        let moveInterval=setInterval(()=>{
+        this.moveInterval=setInterval(()=>{
  
             this.topPosition++
             this.lightningSprite.style.top=this.topPosition+"vh"
         
-            if(this.topPosition>110){
+            if(this.topPosition>150){
 
-
+                this.removeLightning()
             }
     
             if(self.onMOving){
@@ -89,7 +91,7 @@ class Lightning{
     
     
             }
-
+            this.checkCollisions()
 
         },16)
        
@@ -100,9 +102,34 @@ class Lightning{
     }
 
 
+    checkCollisions(){
+
+
+        if( this.leftPosition < (this.player.leftPosition + this.player.playerWidth) &&
+        (this.leftPosition + this.lightningWidth) > this.player.leftPosition &&
+        this.topPosition < (this.player.topPosition + this.player.playerHeight) &&
+        (this.topPosition + this.lightningHeight) > this.player.topPosition){
+          console.log(this.player.lives)
+          this.player.lives--
+          this.removeLightning()
+        }
+
+
+    }
    
  
+    removeLightning(){
 
+        console.log(this.lightnings)
+
+        document.getElementById("enemiesSpawn").removeChild(this.lightningSprite)
+        clearInterval(this.moveInterval)
+        this.lightnings = this.lightnings.filter(enemy => {
+          return enemy !== this.lightningSprite
+        })
+
+    
+    }
 
 
 }

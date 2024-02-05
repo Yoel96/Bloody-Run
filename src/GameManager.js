@@ -44,7 +44,7 @@ class GameManager{
         //manejar el juego
         this.timeController()
          this.spawnLightning()
-        //inputs de los botones
+        
      
     }
 
@@ -54,10 +54,10 @@ class GameManager{
 
         this.spawnInterval= setInterval(()=>{
     
-            let lightning= new Lightning()
+            let lightning= new Lightning(this.lightnings,this.player)
             //console.log(lightning)
             lightning.createLightning()
-            this.lightnings.push(lightning)
+            this.lightnings.push(lightning.lightningSprite)
 
         },1000)
 
@@ -67,26 +67,27 @@ class GameManager{
     timeController(){
 
         this.timeInterval= setInterval(()=>{
-            self.currentTime++
-            if(self.currentTime>=(self.matchTimer/3)){
+            this.player.checkIsAlive()
+            console.log(this.player.isAlive)
+            if(this.player.isAlive){
+                self.currentTime++
+                if(self.currentTime>=(self.matchTimer/3)){
+    
+                    self.enviroment.changeSky()
+    
+                }
+      
+                if(self.currentTime>=(self.matchTimer)){
+    
+                    this.gameOver()
+    
+                }
+            }else{
 
-                self.enviroment.changeSky()
+                this.gameOver()
 
             }
-
-            if(self.currentTime>=(self.matchTimer/2)){
-
-                self.enviroment.changeSky()
-
-
-            }
-
-
-            if(self.currentTime>=(self.matchTimer)){
-
-                self.gameOver()
-
-            }
+           
         },1000)
         
 
@@ -125,6 +126,10 @@ class GameManager{
     gameOver(){
 
         clearInterval(this.moveInterval)
+        clearInterval(this.timeInterval)
+        clearInterval(this.spawnInterval)
+        clearInterval(this.enviroment.enviromentInterval)
+ 
         this.menu()
 
     }

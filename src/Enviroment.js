@@ -61,7 +61,7 @@ class Enviroment {
     move( ) {
 
         this.enviromentInterval=setInterval(()=>{
-            console.log(this.onMove)
+             
            if(this.onMove ){
             if (this.direction == 1) {
 
