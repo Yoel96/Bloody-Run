@@ -1,9 +1,11 @@
 class Storm{
 
-    constructor(){
+    constructor(isMoving,direction){
         
         this.lightnings=[]
         this.counter=0
+        this.isMoving=isMoving
+        this.direction=direction
 
     }
 
@@ -43,7 +45,7 @@ class Storm{
             
             this.lightnings.forEach((lightning)=>{
                
-                lightning.move()
+                lightning.move(this.isMoving,this.direction)
                 
             })
 

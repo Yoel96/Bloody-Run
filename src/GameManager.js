@@ -50,12 +50,14 @@ class GameManager{
         window.addEventListener("keydown", (event) => {
             if (event.code=== "KeyA" && !self.onMove)  {
                 self.onMove=true
+                self.storm.direction= -1
                 self.direction= -1  
                
             }
         
             if ( event.code=== "KeyD" && !self.onMove) {
                 self.onMove=true
+                self.storm.direction=1
                 self.direction= 1   
             }
         })
@@ -80,9 +82,12 @@ class GameManager{
             self.storm.moveLightning()
             if(self.onMove){
                  self.enviroment.move(self.direction)
+                 self.storm.isMoving=true
                  
-                
-            }            
+            }else{
+
+                self.storm.isMoving=false
+            }
         },16)
 
 

@@ -6,8 +6,7 @@ class Lightning{
         this.leftPosition=leftPosition
         this.topPosition= 0
         this.intervalId
-        this.lightnings=lightnings
-
+ 
     }
 
     start(){
@@ -21,37 +20,52 @@ class Lightning{
     }
 
 
-    move(){
+    move(isMoving,direction){
         
         this.topPosition++
         this.lightningSprite.style.top=this.topPosition+"vh"
+    
+
+        if(isMoving){
+
+
+            if (direction === 1) {
+            
+                this.leftPosition--
+                this.lightningSprite.style.left= this.leftPosition+"vw"
+            
+            }else{
+                this.leftPosition++
+                this.lightningSprite.style.left= this.leftPosition+"vw"
+
+
+            }
+            
+            
+
+
+        }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
         
         if(this.topPosition>110){
-            let thislightning=this
-            this.lightningSprite.remove()
-            this.lightnings.filter((value)=>{
-
-                return value!= thislightning
-
-            })
-
+            this.removeLightning()
+          
         }
 
     }
     
+
+    removeLightning(){
+
+
+        this.lightningSprite.remove()
+
+    }
+
 
 
 }
