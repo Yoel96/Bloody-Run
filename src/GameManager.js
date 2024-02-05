@@ -10,12 +10,12 @@ class GameManager{
         this.timeInterval
         this.player
         this.playerLives=playerLives
-        this.enemy
         this.enemies=[]
+        this.storm
         this.enviroment
         this.onMove=false
         this.direction=1
-
+        this.moveController= this.moveController.bind(this)
 
     }
 
@@ -34,10 +34,9 @@ class GameManager{
         //creamos objeto del enemigo, del jugador y del entorno
         this.player= new Player()
         this.player.start()
+        this.storm= new Storm()
         this.enviroment= new Enviroment()
         this.enviroment.start()
-        this.enemy= new Enemy(this.enemies)
-        this.enemy.start()
         this.onGame()
     }
 
@@ -52,7 +51,7 @@ class GameManager{
             if (event.code=== "KeyA" && !self.onMove)  {
                 self.onMove=true
                 self.direction= -1  
-                
+               
             }
         
             if ( event.code=== "KeyD" && !self.onMove) {
@@ -76,25 +75,20 @@ class GameManager{
     moveController(){
 
         this.moveInterval=setInterval(()=>{
-            self.enemy.spawnEnemies()
+            
+            self.storm.spawnLightning()
+            self.storm.moveLightning()
             if(self.onMove){
-                self.player.move(self.direction)
-                self.enviroment.move(self.direction)
-                if(self.enemies.length>0){
-                    self.enemies.forEach((enemy)=>{
-                        enemy.move(self.direction)
-                    })
-                }
+                 self.enviroment.move(self.direction)
+                 
                 
             }            
-
         },16)
 
 
     }
 
-
-
+    
     timeController(){
 
         this.timeInterval= setInterval(()=>{
