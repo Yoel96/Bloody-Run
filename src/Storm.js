@@ -4,6 +4,7 @@ class Storm{
         
         this.lightnings=[]
         this.counter=0
+
     }
 
     start(){
@@ -17,15 +18,14 @@ class Storm{
     spawnLightning(){
 
         this.counter++
-        if(this.counter>700){
+        if(this.counter>100){
             
             let positionLeft= Math.floor(Math.random()*100)
-            let lightning= new Lightning(positionLeft)
+            let lightning= new Lightning(positionLeft,this.lightnings)
             lightning.start()
             this.lightnings.push(lightning)
-            console.log(this.lightnings)
             this.counter=0
-        
+            this.removeLightning()
         
         }
 
@@ -42,20 +42,32 @@ class Storm{
 
             
             this.lightnings.forEach((lightning)=>{
-
+               
                 lightning.move()
-
+                
             })
 
 
            
 
-            console.log(lighnings)
+             
         }
 
 
     }
     
+    removeLightning(){
+        
+        
+        this.lightnings=this.lightnings.filter((value)=>{
+
+            return value.topPosition<100
+
+        })
+        
+        console.log(this.lightnings)
+    }
+
 
 
 }

@@ -1,10 +1,12 @@
 class Lightning{
 
-    constructor(leftPosition){
+    constructor(leftPosition,lightnings){
+     
         this.lightningSprite
         this.leftPosition=leftPosition
-        this.topPosition= -10
+        this.topPosition= 0
         this.intervalId
+        this.lightnings=lightnings
 
     }
 
@@ -20,10 +22,33 @@ class Lightning{
 
 
     move(){
-
+        
         this.topPosition++
         this.lightningSprite.style.top=this.topPosition+"vh"
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        if(this.topPosition>110){
+            let thislightning=this
+            this.lightningSprite.remove()
+            this.lightnings.filter((value)=>{
 
+                return value!= thislightning
+
+            })
+
+        }
 
     }
     
