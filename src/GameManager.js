@@ -23,7 +23,14 @@ class GameManager{
     menu(){
 
         //Manejar botones del menu y mostrar el contexto
+        document.querySelector("#mainMenu button").addEventListener("click",()=>{
+            console.log("hola")
+            document.querySelector("#menu").style.display="none"
+            this.startGame()
 
+        })
+
+      
 
     }
 
@@ -43,7 +50,7 @@ class GameManager{
     onGame(){
         //manejar el juego
         this.timeController()
-         this.spawnLightning()
+        this.spawnLightning()
         
      
     }
@@ -59,7 +66,7 @@ class GameManager{
             lightning.createLightning()
             this.lightnings.push(lightning.lightningSprite)
 
-        },1000)
+        },500)
 
 
     }
@@ -149,4 +156,4 @@ class GameManager{
 
 
 const gM= new GameManager(4000,3)
-gM.startGame()
+gM.menu()

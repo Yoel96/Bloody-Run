@@ -17,7 +17,7 @@ class Lightning{
 
     createLightning(){
 
-        this.leftPosition=Math.floor(Math.random()*70)
+        this.leftPosition=10+Math.floor(Math.random()*70)
         this.lightningSprite=document.createElement("div")
         this.lightningSprite.classList.add("enemyObject")
         this.lightningSprite.style.left= this.leftPosition+"vw"
@@ -64,7 +64,7 @@ class Lightning{
 
         this.moveInterval=setInterval(()=>{
  
-            this.topPosition++
+            this.topPosition+=2
             this.lightningSprite.style.top=this.topPosition+"vh"
         
             if(this.topPosition>150){
