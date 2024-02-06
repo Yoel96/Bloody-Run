@@ -35,7 +35,7 @@ body{
     height: 10vh;
     width: 100vw;
     z-index: 10;
-    
+    background-image: url("../assets/ground.jpg");
 }
 
 #ground{
@@ -48,10 +48,25 @@ body{
 #ground2{
 
     left: 100vw;
-    background-color: rgb(141, 141, 255);
+ 
 
 }
 
+
+#livesContainer{
+
+    top: 4vh;
+    left: 2vw;
+    position: absolute;
+    z-index: 40;
+    width: 20vw;
+}
+
+#livesContainer img{
+
+ 
+    width: 12%;
+}
 
 #player{
 

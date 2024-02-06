@@ -5,8 +5,6 @@ class GameManager{
         self=this
         this.matchTimer=matchTimer
         this.currentTime=0
-      
-        this.moveInterval
         this.timeInterval
         this.spawnInterval
         this.player
@@ -38,7 +36,7 @@ class GameManager{
 
     startGame(){
         //creamos objeto del enemigo, del jugador y del entorno
-        this.player= new Player(70.5, 45, 10)
+        this.player= new Player(70.5, 45, this.playerLives)
         this.player.start()
         this.enviroment= new Enviroment(this.player)
         this.enviroment.start()
@@ -178,21 +176,19 @@ class GameManager{
     }
 
     gameWin(){
-        
-        clearInterval(this.moveInterval)
+             
         clearInterval(this.timeInterval)
         clearInterval(this.spawnInterval)
+        clearInterval(this.enviroment.enviromentInterval)
         clearInterval(this.enviroment.enviromentInterval)
 
     }
 
     gameOver(){
 
-        clearInterval(this.moveInterval)
         clearInterval(this.timeInterval)
         clearInterval(this.spawnInterval)
-        clearInterval(this.enviroment.enviromentInterval)
- 
+        clearInterval(this.enviroment.enviromentInterval)  
         this.menu()
 
     }

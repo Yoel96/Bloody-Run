@@ -70,7 +70,7 @@ class Lightning{
             this.topPosition+=2
             this.lightningSprite.style.top=this.topPosition+"vh"
         
-            if(this.topPosition>150){
+            if(this.topPosition>80){
 
                 this.removeLightning(false)
             }
@@ -113,7 +113,8 @@ class Lightning{
         this.topPosition < (this.player.topPosition + this.player.playerHeight) &&
         (this.topPosition + this.lightningHeight) > this.player.topPosition){
     
-            this.removeLightning(true)
+          this.removeLightning(true)
+          this.removeBloodDrop()
           this.player.lives--
           console.log(this.player.lives)
        
@@ -122,19 +123,25 @@ class Lightning{
 
     }
    
+    removeBloodDrop(){
+
+         const bloodDrops= Array.from(document.querySelectorAll("#livesContainer img"))
+         if(bloodDrops.length>0){   
+         bloodDrops[this.player.lives-1].remove()
+         }
+
+    }
  
     removeLightning(isHit){
-
-       // console.log(this.lightnings)
-     
-     
             
             clearInterval(this.moveInterval)
             if(isHit){
                 this.showBurst()
 
             }
-            
+            this.lightningSprite.classList.remove("lightningSprite")
+            this.lightningSprite.classList.add("lightningBurst")
+
             setTimeout(()=>{
                 this.player.playerSprite.classList.remove("playerHit")
                 document.getElementById("enemiesSpawn").removeChild(this.lightningSprite)
@@ -149,8 +156,7 @@ class Lightning{
 
     showBurst(){
 
-        this.lightningSprite.classList.remove("lightningSprite")
-        this.lightningSprite.classList.add("lightningBurst")
+       
         this.player.playerSprite.classList.add("playerHit")
         this.lightningSprite.style.width= "7vw"
         this.lightningSprite.style.left= "50vw"
