@@ -1,3 +1,8 @@
+@font-face {
+    font-family: menuFont;
+    src: url("../assets/Font/BloodMoon-Regular.ttf");
+  }
+
 body{
     overflow: hidden;
     
@@ -78,8 +83,7 @@ body{
     z-index: 40;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url("../assets/Vampire/Idle/1.png");
-
+   
 
 
 }
@@ -143,30 +147,53 @@ body{
 
 }
 
-#mainMenu{
+.mainMenu{
 
 
     margin: auto;
     display: block;
+    margin-top: 15%;
     width: 50%;
 
 }
 
-#mainMenu h1{
+.mainMenu h1{
 
     text-align: center;
-    font-size: 150px;
+   
+    font-family: menuFont;
+    color: red;
+    font-size: 160px;
+    -webkit-text-stroke-width: 3px;
+    margin: 0 0 2% 0;
+    -webkit-text-stroke-color: rgb(230, 0, 0);
 
 }
 
-#mainMenu button{
+.mainMenu button{
 
     margin: auto;
     display: block;
     font-size: 100px;
+    background:none;
+    color: white;
+    border: 0px;
+    font-family: menuFont;
 
 }
 
+.mainMenu button:hover{
+
+    border-bottom: 4px solid white;
+    cursor: pointer;
+}
+
+
+#gameOver{
+
+    display: none;
+
+}
 
 #storm section{
 
@@ -176,6 +203,9 @@ body{
     height: 15vh;
     top:0;
 }
+
+
+
 
 #cloud1{
 
@@ -219,9 +249,12 @@ body{
 
  .idleAnimation{
 
-animation: idleAnimation 2s infinite ;
+animation: idleAnimation 2s infinite forwards ;
 
 }
+
+ 
+
 @keyframes idleAnimation{
     
     0% {
@@ -235,5 +268,66 @@ animation: idleAnimation 2s infinite ;
     }
     100% {
         background-image: url("../assets/Vampire/Idle/4.png");
+    }
+}
+
+
+
+
+.runningAnimation{
+
+    animation: runningAnimation 2s infinite ;
+
+}
+
+
+
+@keyframes runningAnimation{
+
+    0% {
+        background-image: url("../assets/Vampire/Running/1.png");
+    }
+    20% {
+        background-image: url("../assets/Vampire/Running/2.png");
+    }
+    40% {
+        background-image: url("../assets/Vampire/Running/3.png");
+    }
+    60% {
+        background-image: url("../assets/Vampire/Running/4.png");
+    }
+    80% {
+        background-image: url("../assets/Vampire/Running/5.png");
+    }
+    100% {
+        background-image: url("../assets/Vampire/Running/6.png");
+    }
+}
+
+
+
+.deathAnimation{
+
+    animation: deathAnimation 2s ;
+
+}
+
+@keyframes deathAnimation{
+    
+    0% {
+        background-image: url("../assets/Vampire/Death/1.png");
+    }
+    25% {
+        background-image: url("../assets/Vampire/Death/2.png");
+    }
+    50% {
+        background-image: url("../assets/Vampire/Death/3.png");
+    }
+    75% {
+        background-image: url("../assets/Vampire/Death/4.png");
+    }
+    100% {
+        background-image: url("../assets/Vampire/Death/5.png");
+     
     }
 }

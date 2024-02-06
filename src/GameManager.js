@@ -14,6 +14,8 @@ class GameManager{
         this.direction=1
         this.lightnings=[]
         this.gameOverAudio
+        this.isGameOver=false
+        
  
     }
 
@@ -22,8 +24,8 @@ class GameManager{
     menu(){
 
         //Manejar botones del menu y mostrar el contexto
-        document.querySelector("#mainMenu button").addEventListener("click",()=>{
-            console.log("hola")
+        document.querySelector("#menu button").addEventListener("click",()=>{
+             
             document.querySelector("#menu").style.display="none"
             this.startGame()
 
@@ -59,36 +61,41 @@ class GameManager{
 
     checkInputs(){
         window.addEventListener("keydown", (event) => {
-            if (event.code=== "KeyA" && ! this.onMove)  {
+
+            if (event.code=== "KeyA" && !this.onMove   )  {
                 this.onMove=true
                 this.direction= -1  
                  
             }
         
-            if ( event.code=== "KeyD" && ! this.onMove) {
+            if ( event.code=== "KeyD" && !this.onMove  ) {
                 this.onMove=true
                 this.direction= 1
                    
             }
 
+            if( !this.isGameOver){
+                this.player.playerMoving(this.direction)
+                this.enviroment.direction=this.direction
+                this.enviroment.onMove=this.onMove
 
-            this.player.playerMoving(this.direction)
-            this.enviroment.direction=this.direction
-            this.enviroment.onMove=this.onMove
+            }
+           
         })
 
         window.addEventListener("keyup", (event) => {
-            if (event.code=== "KeyA" && this.onMove)  {
+            if (event.code=== "KeyA" && this.onMove  )  {
                 this.onMove= false
             }
         
-            if ( event.code=== "KeyD" && this.onMove) {
+            if ( event.code=== "KeyD" && this.onMove  ) {
                 this.onMove= false
             }
+            if( !this.isGameOver){
             this.player.playerStop(this.direction)
             this.enviroment.direction=this.direction
             this.enviroment.onMove=this.onMove
-
+            }
         })
 
 
@@ -116,7 +123,8 @@ class GameManager{
             this.player.checkIsAlive()
             console.log(this.enviroment.isOnCastle)
             if( this.enviroment.isOnCastle){
-                
+                this.isGameOver=true   
+
                 this.gameWin()
 
             }
@@ -126,7 +134,7 @@ class GameManager{
                 console.log(this.currentTime)
                 if(this.currentTime>=this.matchTimer){
     
-                   
+                this.isGameOver=true   
                 this.gameOver()
 
     
@@ -134,6 +142,7 @@ class GameManager{
       
                
             }else{
+                this.isGameOver=true   
 
                 this.gameOver()
 
@@ -164,26 +173,33 @@ class GameManager{
     }
 
     gameWin(){
-             
-        clearInterval(this.timeInterval)
-        clearInterval(this.spawnInterval)
-        clearInterval(this.enviroment.enviromentInterval)
-        clearInterval(this.enviroment.timerMorning)
-        clearInterval(this.enviroment.timerNight)
+         this.player.playerStop(this.direction)    
+        this.clearIntervals()
+
+
     }
 
     gameOver(){
         
         this.gameOverAudio.play()
+        this.clearIntervals()
+        this.player.playerSprite.setAttribute("class", "deathAnimation")
+        this.menu()
+
+    }
+
+
+    clearIntervals(){
+     
         clearInterval(this.timeInterval)
         clearInterval(this.spawnInterval)
         clearInterval(this.enviroment.enviromentInterval)  
         clearInterval(this.enviroment.timerMorning)
         clearInterval(this.enviroment.timerNight)
-        this.menu()
+        
+
 
     }
-
 
 }
 
