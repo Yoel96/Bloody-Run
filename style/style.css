@@ -109,7 +109,7 @@ body{
     background-image: url("../assets/burstSprite.png");
     background-size: cover;
     background-position: center;
-    
+     
 }
 
 
@@ -194,3 +194,31 @@ body{
 
 }
 
+
+
+
+
+
+
+
+
+ .idleAnimation{
+
+animation: idleAnimation 2s infinite ;
+
+}
+@keyframes idleAnimation{
+    
+    0% {
+        background-image: url("../assets/Vampire/Idle/1.png");
+    }
+    35% {
+        background-image: url("../assets/Vampire/Idle/2.png");
+    }
+    70% {
+        background-image: url("../assets/Vampire/Idle/3.png");
+    }
+    100% {
+        background-image: url("../assets/Vampire/Idle/4.png");
+    }
+}
