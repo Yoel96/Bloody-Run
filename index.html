@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> 
+    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="src/Enviroment.js" defer></script>
+    <script src="src/Storm.js" defer></script>  
+    <script src="src/Lightning.js" defer></script>
+    <script src="src/Player.js" defer></script> 
+    <script src="src/GameManager.js" defer></script>
+
 </head>
 <body>
     <section id="canvas">
@@ -15,19 +22,34 @@
                 <section id="sunrise" class="sky" > </section>
                 <section id="morning" class="sky" > </section>
             </section>
-
+            <section class="enemyObject"></section>
+            <section id="storm" >
+                <section id="cloud1"></section>
+                <section id="cloud2"></section>
+                <section id="cloud3"></section>
+                <section id="cloud4"></section>
+            </section>
             <section id="enemy"> </section>
+            
+            <section id="enemiesSpawn"></section>
             <section id="player"></section>
             <section id="ground"></section>
             <section id="ground2"></section>
-
+            <section id="castle"></section>
 
         </section>
 
-        <section class="gameSection" id="menu"></section>
+        <section class="gameSection" id="menu">
+            <div id="mainMenu">
+            <h1>Bloody Run</h1>
+            <button>Play</button>
+            </div>
+        </section>
+
+        
         <section class="gameSection" id="context"></section>
         <section class="gameSection" id="gameOver"></section>
-
+ 
 
     </section>
 

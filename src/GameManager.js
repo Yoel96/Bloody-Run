@@ -5,18 +5,17 @@ class GameManager{
         self=this
         this.matchTimer=matchTimer
         this.currentTime=0
-        this.progress=0
+      
         this.moveInterval
         this.timeInterval
+        this.spawnInterval
         this.player
         this.playerLives=playerLives
-        this.enemy
-        this.enemies=[]
         this.enviroment
         this.onMove=false
         this.direction=1
-
-
+        this.lightnings=[]
+ 
     }
 
 
@@ -24,7 +23,14 @@ class GameManager{
     menu(){
 
         //Manejar botones del menu y mostrar el contexto
+        document.querySelector("#mainMenu button").addEventListener("click",()=>{
+            console.log("hola")
+            document.querySelector("#menu").style.display="none"
+            this.startGame()
 
+        })
+
+      
 
     }
 
@@ -32,12 +38,10 @@ class GameManager{
 
     startGame(){
         //creamos objeto del enemigo, del jugador y del entorno
-        this.player=  new Player()
+        this.player= new Player(70.5, 45, 10)
         this.player.start()
-        this.enviroment= new Enviroment()
+        this.enviroment= new Enviroment(this.player)
         this.enviroment.start()
-        this.enemy= new Enemy(this.enemies)
-        this.enemy.start()
         this.onGame()
     }
 
@@ -46,80 +50,105 @@ class GameManager{
     onGame(){
         //manejar el juego
         this.timeController()
-        this.moveController()
-        //inputs de los botones
+        this.spawnLightning()
+        this.checkInputs()
+     
+    }
+
+    checkInputs(){
         window.addEventListener("keydown", (event) => {
-            if (event.code=== "KeyA" && !self.onMove)  {
-                self.onMove=true
-                self.direction= -1  
-                
+            if (event.code=== "KeyA" && ! this.onMove)  {
+                this.onMove=true
+                this.direction= -1  
+                 
             }
         
-            if ( event.code=== "KeyD" && !self.onMove) {
-                self.onMove=true
-                self.direction= 1   
+            if ( event.code=== "KeyD" && ! this.onMove) {
+                this.onMove=true
+                this.direction= 1
+                   
             }
+
+            this.enviroment.direction=this.direction
+            this.enviroment.onMove=this.onMove
+
+           /* this.lightnings.forEach((lightning)=>{
+
+                console.log(self.onMove)
+                lightning.onMove=self.onMove
+                lightning.direction=self.direction
+
+
+            })
+*/
+
         })
 
         window.addEventListener("keyup", (event) => {
-            if (event.code=== "KeyA" && self.onMove)  {
-                self.onMove= false
+            if (event.code=== "KeyA" && this.onMove)  {
+                this.onMove= false
             }
         
-            if ( event.code=== "KeyD" && !self.onMove) {
-                self.onMove= false
+            if ( event.code=== "KeyD" && this.onMove) {
+                this.onMove= false
             }
+
+            this.enviroment.direction=this.direction
+            this.enviroment.onMove=this.onMove
+
         })
-    }
 
 
-    moveController(){
-
-        this.moveInterval=setInterval(()=>{
-
-            if(self.onMove){
-                self.enemy.spawnEnemies()
-                self.player.move(direction)
-                self.enviroment.move(self.direction)
-                if(self.enemies.length>0){
-                    self.enemies.forEach((enemy)=>{
-                        enemy.move(direction)
-                    })
-                }
-                
-            }            
-
-        },16)
 
 
     }
 
 
+    spawnLightning(){
 
+        this.spawnInterval= setInterval(()=>{
+    
+            let lightning= new Lightning(this.lightnings,this.player)
+            //console.log(lightning)
+            lightning.createLightning()
+            this.lightnings.push(lightning.lightningSprite)
+
+        },1500)
+
+
+    }
+    
     timeController(){
 
-        timeInterval= setInterval(()=>{
-            self.currentTime++
-            if(self.currentTime>=(self.matchTimer/3)){
-
-                self.enviroment.changeSky()
-
-            }
-
-            if(self.currentTime>=(self.matchTimer/2)){
-
-                self.enviroment.changeSky()
-
+        this.timeInterval= setInterval(()=>{
+            this.player.checkIsAlive()
+            console.log(this.enviroment.isOnCastle)
+            if( this.enviroment.isOnCastle){
+                
+                this.gameWin()
 
             }
 
+            if(this.player.isAlive){
+                self.currentTime+=0.5
+                if(self.currentTime>=(self.matchTimer/3)){
+    
+                    self.enviroment.changeSky()
+    
+                }
+      
+                if(self.currentTime>=(self.matchTimer)){
+    
+                    this.gameOver()
+    
+                }
+            }else{
 
-            if(self.currentTime>=(self.matchTimer)){
-
-                self.gameOver()
+                this.gameOver()
 
             }
-        },1000)
+           
+        },500)
         
 
     }
@@ -139,27 +168,39 @@ class GameManager{
 
 
         }
-
-        if(progress>=1100){
+/*
+        if(progress>=6){
 
             this.gameWin()
 
-        }
+        }*/
 
     }
 
     gameWin(){
-
-
+        
+        clearInterval(this.moveInterval)
+        clearInterval(this.timeInterval)
+        clearInterval(this.spawnInterval)
+        clearInterval(this.enviroment.enviromentInterval)
 
     }
 
     gameOver(){
 
         clearInterval(this.moveInterval)
+        clearInterval(this.timeInterval)
+        clearInterval(this.spawnInterval)
+        clearInterval(this.enviroment.enviromentInterval)
+ 
         this.menu()
 
     }
 
 
 }
+
+
+
+const gM= new GameManager(4000,3)
+gM.menu()
