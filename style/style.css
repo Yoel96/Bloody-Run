@@ -237,3 +237,34 @@ animation: idleAnimation 2s infinite ;
         background-image: url("../assets/Vampire/Idle/4.png");
     }
 }
+
+
+.runningAnimation{
+
+    animation: runningAnimation 2s infinite ;
+
+}
+
+
+
+@keyframes runningAnimation{
+    
+    0% {
+        background-image: url("../assets/Vampire/running (1)/Corriendo/1.png");
+    }
+    20% {
+        background-image: url("../assets/Vampire/running (1)/Corriendo/2.png");
+    }
+    40% {
+        background-image: url("../assets/Vampire/running (1)/Corriendo/3.png");
+    }
+    60% {
+        background-image: url("../assets/Vampire/running (1)/Corriendo/4.png");
+    }
+    80% {
+        background-image: url("../assets/Vampire/running (1)/Corriendo/5.png");
+    }
+    100% {
+        background-image: url("../assets/Vampire/running (1)/Corriendo/6.png");
+    }
+}
