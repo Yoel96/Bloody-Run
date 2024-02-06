@@ -13,6 +13,7 @@ class GameManager{
         this.onMove=false
         this.direction=1
         this.lightnings=[]
+        this.gameOverAudio
  
     }
 
@@ -42,9 +43,11 @@ class GameManager{
         this.enviroment.start()
         this.enviroment.changeSky()
         this.onGame()
+        this.gameOverAudio=new Audio("../assets/Sound/loseSound.mp3")
     }
 
 
+ 
 
     onGame(){
         //manejar el juego
@@ -68,19 +71,10 @@ class GameManager{
                    
             }
 
+
+            this.player.playerMoving(this.direction)
             this.enviroment.direction=this.direction
             this.enviroment.onMove=this.onMove
-
-           /* this.lightnings.forEach((lightning)=>{
-
-                console.log(self.onMove)
-                lightning.onMove=self.onMove
-                lightning.direction=self.direction
-
-
-            })
-*/
-
         })
 
         window.addEventListener("keyup", (event) => {
@@ -91,7 +85,7 @@ class GameManager{
             if ( event.code=== "KeyD" && this.onMove) {
                 this.onMove= false
             }
-
+            this.player.playerStop(this.direction)
             this.enviroment.direction=this.direction
             this.enviroment.onMove=this.onMove
 
@@ -108,7 +102,6 @@ class GameManager{
         this.spawnInterval= setInterval(()=>{
     
             let lightning= new Lightning(this.lightnings,this.player)
-            //console.log(lightning)
             lightning.createLightning()
             this.lightnings.push(lightning.lightningSprite)
 
@@ -166,12 +159,7 @@ class GameManager{
 
 
         }
-/*
-        if(progress>=6){
 
-            this.gameWin()
-
-        }*/
 
     }
 
@@ -180,15 +168,18 @@ class GameManager{
         clearInterval(this.timeInterval)
         clearInterval(this.spawnInterval)
         clearInterval(this.enviroment.enviromentInterval)
-        clearInterval(this.enviroment.enviromentInterval)
-
+        clearInterval(this.enviroment.timerMorning)
+        clearInterval(this.enviroment.timerNight)
     }
 
     gameOver(){
-
+        
+        this.gameOverAudio.play()
         clearInterval(this.timeInterval)
         clearInterval(this.spawnInterval)
         clearInterval(this.enviroment.enviromentInterval)  
+        clearInterval(this.enviroment.timerMorning)
+        clearInterval(this.enviroment.timerNight)
         this.menu()
 
     }

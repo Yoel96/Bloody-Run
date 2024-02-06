@@ -10,6 +10,8 @@ class Player{
         this.sprites=["","","",""]
         this.lives = lives
         this.isAlive = true;
+        this.runningAudio
+        
         
     }
 
@@ -21,6 +23,8 @@ class Player{
         this.playerSprite.style.left=this.leftPosition + "vw"
         this.playerSprite.style.width=this.playerWidth + "vw"
         this.playerSprite.style.top=this.topPosition + "vh"
+        this.runningAudio= new Audio("../assets/Sound/runningSound.mp3")
+        this.runningAudio.loop=true
         this.showLives()
     }
 
@@ -51,14 +55,25 @@ class Player{
     }
 
 
-    move(direction){
+    playerMoving(direction){
 
         //cambiar los sprites segun dirección
+        if(this.lives>0){
+
+            this.runningAudio.play()
+
+        }
+        
 
 
 
+    }
 
 
+    playerStop(direction){
+
+
+        this.runningAudio.pause()
     }
 
    

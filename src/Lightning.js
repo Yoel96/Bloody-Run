@@ -12,6 +12,7 @@ class Lightning{
         this.onMove=false
         this.player=player
         this.lightningHeight= 21
+        this.shockAudio
  
     }
 
@@ -23,6 +24,7 @@ class Lightning{
         this.lightningSprite.classList.add("lightningSprite")
         this.lightningSprite.style.left= this.leftPosition+"vw"
         document.getElementById("enemiesSpawn").appendChild(this.lightningSprite)
+        this.shockAudio= new Audio("../assets/Sound/shockSound.mp3")
         this.move()
         this.checkInputs()
     }
@@ -156,7 +158,7 @@ class Lightning{
 
     showBurst(){
 
-       
+        this.shockAudio.play()
         this.player.playerSprite.classList.add("playerHit")
         this.lightningSprite.style.width= "7vw"
         this.lightningSprite.style.left= "50vw"
