@@ -42,6 +42,7 @@ class GameManager{
         this.player.start()
         this.enviroment= new Enviroment(this.player)
         this.enviroment.start()
+        this.enviroment.changeSky()
         this.onGame()
     }
 
@@ -130,18 +131,17 @@ class GameManager{
             }
 
             if(this.player.isAlive){
-                self.currentTime+=0.5
-                if(self.currentTime>=(self.matchTimer/3)){
+                this.currentTime+=0.5
+                console.log(this.currentTime)
+                if(this.currentTime>=this.matchTimer){
     
-                    self.enviroment.changeSky()
+                   
+                this.gameOver()
+
     
                 }
       
-                if(self.currentTime>=(self.matchTimer)){
-    
-                    this.gameOver()
-    
-                }
+               
             }else{
 
                 this.gameOver()
@@ -202,5 +202,5 @@ class GameManager{
 
 
 
-const gM= new GameManager(4000,3)
+const gM= new GameManager(25,3)
 gM.menu()
