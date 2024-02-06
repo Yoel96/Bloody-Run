@@ -38,7 +38,7 @@ class GameManager{
 
     startGame(){
         //creamos objeto del enemigo, del jugador y del entorno
-        this.player= new Player(80, 45, 10)
+        this.player= new Player(70.5, 45, 10)
         this.player.start()
         this.enviroment= new Enviroment(this.player)
         this.enviroment.start()
@@ -51,11 +51,58 @@ class GameManager{
         //manejar el juego
         this.timeController()
         this.spawnLightning()
-        
+        this.checkInputs()
      
     }
 
- 
+    checkInputs(){
+        window.addEventListener("keydown", (event) => {
+            if (event.code=== "KeyA" && ! this.onMove)  {
+                this.onMove=true
+                this.direction= -1  
+                 
+            }
+        
+            if ( event.code=== "KeyD" && ! this.onMove) {
+                this.onMove=true
+                this.direction= 1
+                   
+            }
+
+            this.enviroment.direction=this.direction
+            this.enviroment.onMove=this.onMove
+
+           /* this.lightnings.forEach((lightning)=>{
+
+                console.log(self.onMove)
+                lightning.onMove=self.onMove
+                lightning.direction=self.direction
+
+
+            })
+*/
+
+        })
+
+        window.addEventListener("keyup", (event) => {
+            if (event.code=== "KeyA" && this.onMove)  {
+                this.onMove= false
+            }
+        
+            if ( event.code=== "KeyD" && this.onMove) {
+                this.onMove= false
+            }
+
+            this.enviroment.direction=this.direction
+            this.enviroment.onMove=this.onMove
+
+        })
+
+
+
+
+    }
+
 
     spawnLightning(){
 
@@ -66,7 +113,7 @@ class GameManager{
             lightning.createLightning()
             this.lightnings.push(lightning.lightningSprite)
 
-        },500)
+        },1500)
 
 
     }
@@ -83,7 +130,7 @@ class GameManager{
             }
 
             if(this.player.isAlive){
-                self.currentTime++
+                self.currentTime+=0.5
                 if(self.currentTime>=(self.matchTimer/3)){
     
                     self.enviroment.changeSky()
@@ -101,7 +148,7 @@ class GameManager{
 
             }
            
-        },1000)
+        },500)
         
 
     }

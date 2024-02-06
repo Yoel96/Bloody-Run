@@ -4,14 +4,14 @@ class Lightning{
         self=this
         this.lightningSprite
         this.leftPosition
-        this.lightningWidth=10
-        this.topPosition= -10
+        this.lightningWidth=5
+        this.topPosition= -5
         this.lightnings=lightnings
         this.moveInterval
         this.direction=-1
-        this.onMOving=false
+        this.onMove=false
         this.player=player
-        this.lightningHeight= 10
+        this.lightningHeight= 21
  
     }
 
@@ -19,44 +19,46 @@ class Lightning{
 
         this.leftPosition=10+Math.floor(Math.random()*70)
         this.lightningSprite=document.createElement("div")
-        this.lightningSprite.classList.add("enemyObject")
+        this.lightningSprite.classList.add("lightning")
         this.lightningSprite.style.left= this.leftPosition+"vw"
         document.getElementById("enemiesSpawn").appendChild(this.lightningSprite)
         this.move()
         this.checkInputs()
     }
 
-
+ 
     checkInputs(){
 
        
         window.addEventListener("keydown", (event) => {
-            if (event.code=== "KeyA" && !self.onMOving)  {
-                self.onMOving=true
+            if (event.code=== "KeyA" && !self.onMove)  {
+                self.onMove=true
                 self.direction= -1  
                
+
             }
         
-            if ( event.code=== "KeyD" && !self.onMOving) {
-                self.onMOving=true
-                self.direction= 1   
+            if ( event.code=== "KeyD" && !self.onMove) {
+                self.onMove=true
+                self.direction= 1  
+              
             }
         })
 
         window.addEventListener("keyup", (event) => {
-            if (event.code=== "KeyA" && self.onMOving)  {
-                self.onMOving= false
+            if (event.code=== "KeyA" && self.onMove)  {
+                self.onMove= false
             }
         
-            if ( event.code=== "KeyD" && self.onMOving) {
-                self.onMOving= false
+            if ( event.code=== "KeyD" && self.onMove) {
+                self.onMove= false
             }
         })
 
 
 
     }
-
+ 
     move(){
         
       
@@ -72,7 +74,7 @@ class Lightning{
                 this.removeLightning()
             }
     
-            if(self.onMOving){
+            if(self.onMove){
     
     
                 if (self.direction === 1) {

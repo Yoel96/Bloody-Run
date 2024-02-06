@@ -6,7 +6,7 @@ class Player{
         this.topPosition= topPosition
         this.leftPosition= leftPosition
         this.playerWidth=10
-        this.playerHeight = 5
+        this.playerHeight = 10
         this.sprites=["","","",""]
         this.lives = 3
         this.isAlive = true;

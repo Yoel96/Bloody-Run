@@ -7,8 +7,8 @@ class Enviroment {
         this.groundLeft = 0
         this.ground2Left = 100
         this.castleLeft= 110
-        this.castleWidht=20
-        this.castleTop= 80
+        this.castleWidht=50
+        this.castleTop= 30
         this.castleSprite
         this.opacity
         this.onMove=false
@@ -26,7 +26,7 @@ class Enviroment {
         this.groundSprite = document.getElementById("ground")
         this.ground2Sprite = document.getElementById("ground2")
         this.move()
-        this.checkInputs()
+        //this.checkInputs()
     }
 
 
@@ -35,7 +35,7 @@ class Enviroment {
 
 
     }
-
+/*
     checkInputs(){
         window.addEventListener("keydown", (event) => {
             if (event.code=== "KeyA" && ! this.onMove)  {
@@ -65,7 +65,7 @@ class Enviroment {
 
 
     }
-
+*/
     move( ) {
 
         this.enviromentInterval=setInterval(()=>{
