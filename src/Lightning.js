@@ -16,12 +16,21 @@ class Lightning{
  
     }
 
-    createLightning(){
+    createLightning(showCar){
 
         this.leftPosition=10+Math.floor(Math.random()*70)
         this.lightningSprite=document.createElement("div")
         this.lightningSprite.classList.add("lightning")
-        this.lightningSprite.classList.add("lightningSprite")
+        console.log("showcar"+showCar)
+        if(showCar){
+            this.lightningSprite.classList.add("mcqueen")
+
+
+
+        }else{
+            this.lightningSprite.classList.add("lightningSprite")
+
+        }
         this.lightningSprite.style.left= this.leftPosition+"vw"
         document.getElementById("enemiesSpawn").appendChild(this.lightningSprite)
         this.shockAudio= new Audio("../assets/Sound/shockSound.mp3")

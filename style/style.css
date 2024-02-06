@@ -119,6 +119,13 @@ body{
 }
 
 
+.mcqueen{
+
+    background-image: url("../assets/mcqueen.png");
+    background-size: contain;
+    width: 15dvw !important;
+}
+
 .lightningBurst{
 
     background-image: url("../assets/burstSprite.png");

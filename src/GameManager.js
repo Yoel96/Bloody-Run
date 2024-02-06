@@ -102,7 +102,12 @@ class GameManager{
         this.spawnInterval= setInterval(()=>{
     
             let lightning= new Lightning(this.lightnings,this.player)
-            lightning.createLightning()
+            if(this.currentTime>8){
+                lightning.createLightning(true)
+            }else{
+            lightning.createLightning(false)
+            }
+            
             this.lightnings.push(lightning.lightningSprite)
 
         },1500)
