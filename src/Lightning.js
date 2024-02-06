@@ -20,6 +20,7 @@ class Lightning{
         this.leftPosition=10+Math.floor(Math.random()*70)
         this.lightningSprite=document.createElement("div")
         this.lightningSprite.classList.add("lightning")
+        this.lightningSprite.classList.add("lightningSprite")
         this.lightningSprite.style.left= this.leftPosition+"vw"
         document.getElementById("enemiesSpawn").appendChild(this.lightningSprite)
         this.move()
@@ -71,7 +72,7 @@ class Lightning{
         
             if(this.topPosition>150){
 
-                this.removeLightning()
+                this.removeLightning(false)
             }
     
             if(self.onMove){
@@ -111,26 +112,50 @@ class Lightning{
         (this.leftPosition + this.lightningWidth) > this.player.leftPosition &&
         this.topPosition < (this.player.topPosition + this.player.playerHeight) &&
         (this.topPosition + this.lightningHeight) > this.player.topPosition){
-          console.log(this.player.lives)
+    
+            this.removeLightning(true)
           this.player.lives--
-          this.removeLightning()
+          console.log(this.player.lives)
+       
         }
 
 
     }
    
  
-    removeLightning(){
+    removeLightning(isHit){
 
        // console.log(this.lightnings)
+     
+     
+            
+            clearInterval(this.moveInterval)
+            if(isHit){
+                this.showBurst()
 
-        document.getElementById("enemiesSpawn").removeChild(this.lightningSprite)
-        clearInterval(this.moveInterval)
-        this.lightnings = this.lightnings.filter(enemy => {
-          return enemy !== this.lightningSprite
-        })
-
+            }
+            
+            setTimeout(()=>{
+                this.player.playerSprite.classList.remove("playerHit")
+                document.getElementById("enemiesSpawn").removeChild(this.lightningSprite)
+                this.lightnings = this.lightnings.filter(enemy => {
+                    return enemy !== this.lightningSprite
+                  })
+                 },500)
+                 
+         
     
+    }
+
+    showBurst(){
+
+        this.lightningSprite.classList.remove("lightningSprite")
+        this.lightningSprite.classList.add("lightningBurst")
+        this.player.playerSprite.classList.add("playerHit")
+        this.lightningSprite.style.width= "7vw"
+        this.lightningSprite.style.left= "50vw"
+        this.lightningSprite.style.top= "65vh"
+
     }
 
 

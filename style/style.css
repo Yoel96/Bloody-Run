@@ -1,5 +1,6 @@
 body{
     overflow: hidden;
+    background-color: black
 }
 
 
@@ -34,7 +35,7 @@ body{
     height: 20vh;
     top:70.5vh;
     left:45vw;
-    z-index: 100;
+    z-index: 40;
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("../assets/Vampire/Idle/1.png");
@@ -67,13 +68,31 @@ body{
     top: -5vh;
     left: 0;
     transform: rotate(15deg);
-    background-image: url("../assets/lightningSprite.png");
     background-repeat: no-repeat;
+    z-index: 50;
 
 }
 
+.lightningSprite{
 
- 
+    background-image: url("../assets/lightningSprite.png");
+}
+
+
+.lightningBurst{
+
+    background-image: url("../assets/burstSprite.png");
+    background-size: cover;
+    background-position: center;
+    
+}
+
+
+ .playerHit{
+
+    filter: drop-shadow(16px 16px 20px red) invert(75%);
+
+ }
 
 #menu{
 
