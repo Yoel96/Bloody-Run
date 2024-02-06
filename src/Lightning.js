@@ -148,8 +148,8 @@ class Lightning{
             clearInterval(this.moveInterval)
             if(isHit){
                 this.showBurst()
-
-            }
+                
+            }   
             this.lightningSprite.classList.remove("lightningSprite")
             this.lightningSprite.classList.add("lightningBurst")
 

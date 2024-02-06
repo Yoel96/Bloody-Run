@@ -49,7 +49,6 @@ class Player{
         if(this.lives>0){
         this.isAlive=true
         }else{
-
         this.isAlive =false
         }
     }
@@ -77,7 +76,6 @@ class Player{
     playerStop(direction){
 
         this.playerSprite.setAttribute("class","idleAnimation")
-
         this.runningAudio.pause()
     }
 
