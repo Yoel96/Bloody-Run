@@ -24,16 +24,17 @@ class Lightning{
         console.log("showcar"+showCar)
         if(showCar){
             this.lightningSprite.classList.add("mcqueen")
+            this.shockAudio= new Audio("../assets/Sound/CACHAO LIGHTNING MCQUEEN RAYO MCQUEEN SOUND EFFECTS EFECTOS DE SONIDO.mp3")
 
 
 
         }else{
             this.lightningSprite.classList.add("lightningSprite")
+            this.shockAudio= new Audio("../assets/Sound/shockSound.mp3")
 
         }
         this.lightningSprite.style.left= this.leftPosition+"vw"
         document.getElementById("enemiesSpawn").appendChild(this.lightningSprite)
-        this.shockAudio= new Audio("../assets/Sound/shockSound.mp3")
         this.move()
         this.checkInputs()
     }
