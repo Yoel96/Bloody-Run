@@ -33,6 +33,5 @@ You can find a Canvas presentation showing the overview of the project at the fo
 - **Juan Yoel Betancor Martín:** 
 - **Fabio Herrera Díaz:**
 - **Daniela Romero García:**
-- 
-## Future Ideas
+  
 
