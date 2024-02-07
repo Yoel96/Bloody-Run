@@ -29,9 +29,14 @@ class Player{
 
 
     showLives(){
+       let livesSprite =document.querySelectorAll(".liveImage")
+        if(livesSprite.length>0){
+            document.getElementById("livesContainer").innerHTML=""
+
+            }
 
         for(let i=0;i<this.lives;i++){
-            console.log();
+
             let live = document.createElement("img")
             live.setAttribute("src", "../assets/blood.png")
             live.classList.add("liveImage")

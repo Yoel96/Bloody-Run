@@ -22,11 +22,22 @@ class GameManager{
     }
 
 
+    contextMenu(){
+        document.getElementById("skip").addEventListener('click',()=>{
+            document.getElementById("context").classList.remove("showMenu")
+            document.getElementById("context").classList.add("hideMenu")
+            document.getElementById("menu").classList.add("showMenu")
+            document.getElementById("menu").classList.remove("hideMenu")
+            this.startMenu()
+
+        })
+      
+    }
+
 
     startMenu(){
 
-        //Manejar botones del menu y mostrar el contexto
-        this.event2 = document.querySelector("#menu button").addEventListener("click",()=>{
+            document.querySelector("#menu button").addEventListener("click",()=>{
             document.getElementById("menu").classList.remove("showMenu")
             document.getElementById("menu").classList.add("hideMenu")
             this.startGame()
@@ -54,6 +65,20 @@ class GameManager{
         })
     }
 
+    gameWinMenu(){
+        document.getElementById("gameWin").classList.add("showMenu")
+        document.getElementById("gameWin").classList.remove("hideMenu")
+
+        this.event=document.querySelector("#gameWin button").addEventListener("click",()=>{
+            document.getElementById("gameWin").classList.remove("showMenu")
+            document.getElementById("gameWin").classList.add("hideMenu")
+            this.reStartGame()
+
+        })
+    }
+
+
+
     reStartGame(){
          
          this.player= null
@@ -68,6 +93,7 @@ class GameManager{
 
 
     startGame(){
+        document.getElementById('enemiesSpawn').innerHTML=""
         this.player= new Player(70.5, 45)
         this.player.start(this.playerLives)
         this.enviroment= new Enviroment(this.player)
@@ -202,6 +228,7 @@ class GameManager{
     gameWin(){
          this.player.playerStop(this.direction)    
         this.clearAllIntervals()
+        this.gameWinMenu()
 
 
     }
@@ -239,4 +266,4 @@ class GameManager{
 
 
 const gM= new GameManager(25,3)
-gM.startMenu()
+gM.contextMenu()

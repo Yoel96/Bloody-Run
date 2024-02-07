@@ -162,22 +162,30 @@ body{
 
 }
 
-.mainMenu button{
+.mainMenu button,#skip{
 
     margin: auto;
     display: block;
-    font-size: 100px;
     background:none;
     color: white;
     border: 0px;
     font-family: menuFont;
 
 }
+.mainMenu button{
+    font-size: 100px;
 
-.mainMenu button:hover{
+}
+
+.mainMenu button:hover, #skip:hover{
 
     border-bottom: 4px solid white;
     cursor: pointer;
+}
+
+#skip{
+    font-size: 80px;
+
 }
 
 
@@ -188,10 +196,7 @@ body{
 }
 
 .showMenu{
-  width: 100vw;
-    height: 100vh;
-    position: absolute;
-    z-index: 100;
+ 
     display: block;
 
 
@@ -390,3 +395,56 @@ animation: idleAnimation 2s infinite forwards ;
      
     }
 }
+
+.gameSection{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 0;
+}
+   #context{
+    background-image: linear-gradient(rgba(13, 13, 14, 0.5), rgba(65, 65, 62, 0.5)),url("../assets/Background/Clouds\ 3.png");
+    background-size: cover;
+    
+   }
+
+   #intro{
+    opacity: 0;
+    color: white;
+    width: 50%;
+    text-align: center;
+    margin:15% auto;
+    animation: showText 2s forwards;
+   }
+   @keyframes showText{
+    
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 0.50;
+    }
+    75% {
+        opacity: 0.75;    }
+    100% {
+        opacity: 1;     
+    }
+}
+   #intro p{
+    margin-top: 2%;
+    font-size: 190%;
+   }
+   
+
+   #intro h2{
+    
+    font-size: 200%;
+    margin-bottom: 1%;
+   }
+   
+   
