@@ -25,7 +25,8 @@ class GameManager {
 
     document.querySelector("#gameOver button").addEventListener("click", () => {
       this.hideMenu("gameOver")
-      this.gameAudio.play()
+      this.gameAudio.currentTime = 0
+       this.gameAudio.play()
       this.startGame();
     
     });
@@ -43,6 +44,7 @@ class GameManager {
 
     document.querySelector("#gameWin button").addEventListener("click", () => {
         this.hideMenu("gameWin")
+        this.gameAudio.currentTime = 0
         this.gameAudio.play()
         this.startGame();    
 
@@ -50,6 +52,9 @@ class GameManager {
 
 
       window.addEventListener("keydown", (event) => {
+
+        if(event.code === "KeyA" ||event.code === "KeyD"){
+
         if (event.code === "KeyA" && !this.onMove) {
           this.onMove = true;
           this.direction = -1;
@@ -65,10 +70,12 @@ class GameManager {
           this.player.playerMoving(this.direction); 
           this.changeMovementState()
         }
-
+      }
       });
   
       window.addEventListener("keyup", (event) => {
+
+        if(event.code === "KeyA" ||event.code === "KeyD"){
         if (event.code === "KeyA" && this.onMove) {
           this.onMove = false;
         }
@@ -82,8 +89,12 @@ class GameManager {
           this.changeMovementState()
 
         }
+      }
+
 
       });
+
+    
   }
 
 
@@ -107,7 +118,7 @@ class GameManager {
     this.gameOverAudio = new Audio("../assets/Sound/loseSound.mp3");
     this.gameAudio=new Audio("../assets/Sound/gameOST.mp3")
     this.gameAudio.loop=true
-    this.gameAudio.volume=0.5
+    this.gameAudio.volume=0.4
     this.gameAudio.play()
 
 
