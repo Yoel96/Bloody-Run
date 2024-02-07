@@ -19,6 +19,7 @@ class Player{
     start(){
         this.playerSprite=document.getElementById("player")
         this.playerSprite.classList.remove("class","deathAnimation")
+        this.playerSprite.classList.add("class","idleAnimation")
         this.playerSprite.style.left=this.leftPosition + "vw"
         this.playerSprite.style.width=this.playerWidth + "vw"
         this.playerSprite.style.top=this.topPosition + "vh"

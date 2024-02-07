@@ -16,7 +16,7 @@ class Lightning{
  
     }
 
-    createLightning(){
+    createLightning() {
 
         this.leftPosition=10+Math.floor(Math.random()*70)
         this.lightningSprite=document.createElement("div")
