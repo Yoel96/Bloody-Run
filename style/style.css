@@ -63,7 +63,7 @@ body{
     top: 4vh;
     left: 2vw;
     position: absolute;
-    z-index: 40;
+    z-index: 50;
     width: 20vw;
 }
 
@@ -113,7 +113,7 @@ body{
     left: 0;
     transform: rotate(15deg);
     background-repeat: no-repeat;
-    z-index: 50;
+    z-index: 40;
 
 }
 
@@ -132,7 +132,7 @@ body{
 }
 
 
- .playerHit{
+.playerHit{
 
     filter: drop-shadow(16px 16px 20px red) invert(75%);
 
@@ -152,7 +152,6 @@ body{
 .mainMenu h1{
 
     text-align: center;
-   
     font-family: menuFont;
     color: red;
     font-size: 160px;
@@ -172,6 +171,7 @@ body{
     font-family: menuFont;
 
 }
+
 .mainMenu button{
     font-size: 100px;
 
@@ -192,27 +192,31 @@ body{
 .hideMenu{
 
     display: none;
-
+ 
 }
 
 .showMenu{
  
     display: block;
-
+    animation: showText 1s forwards;
 
 }
+
+
 
 #storm section{
 
     position: absolute;
     background-size: contain;
     width: 120vw;
-    height: 15vh;
+    height: 15vh;   
+     z-index: 50;
+
     top:0;
 }
 
 
-
+ 
 
 #cloud1{
 
@@ -247,8 +251,38 @@ body{
 }
 
 
+#cloud5{
+
+    background-image: url("../assets/clouds/cloud_shape3_1.png");
+    left: 0vw;
+    z-index: 3;
+
+}
 
 
+#storm section{
+
+     animation: stormMove 10s infinite;
+
+}
+
+
+@keyframes stormMove {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    35% {
+        transform: translate(5px, 10px);  
+      }
+    70% {
+        transform: translate(0px, 0px);}
+
+    100% {
+       transform: translate(5px, 15px); 
+    }
+    
+
+}
 
 
 
@@ -297,7 +331,7 @@ animation: idleAnimation 2s infinite forwards ;
         }
         70% {
             background-image: url("../assets/Vampire/IdleLeft/3.png");
-        }
+        }showText
         100% {
             background-image: url("../assets/Vampire/IdleLeft/4.png");
         }
@@ -349,7 +383,7 @@ animation: idleAnimation 2s infinite forwards ;
 @keyframes runningLeftAnimation{
 
     0% {
-        background-image: url("../assets/Vampire/RunningLeft/1.png");
+        background-image: ushowTextrl("../assets/Vampire/RunningLeft/1.png");
     }
     20% {
         background-image: url("../assets/Vampire/RunningLeft/2.png");
