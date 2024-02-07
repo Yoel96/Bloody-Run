@@ -26,41 +26,10 @@ class Lightning{
         document.getElementById("enemiesSpawn").appendChild(this.lightningSprite)
         this.shockAudio= new Audio("../assets/Sound/shockSound.mp3")
         this.move()
-        this.checkInputs()
-    }
+     }
 
  
-    checkInputs(){
-
-       
-        window.addEventListener("keydown", (event) => {
-            if (event.code=== "KeyA" && !self.onMove)  {
-                self.onMove=true
-                self.direction= -1  
-               
-
-            }
-        
-            if ( event.code=== "KeyD" && !self.onMove) {
-                self.onMove=true
-                self.direction= 1  
-              
-            }
-        })
-
-        window.addEventListener("keyup", (event) => {
-            if (event.code=== "KeyA" && self.onMove)  {
-                self.onMove= false
-            }
-        
-            if ( event.code=== "KeyD" && self.onMove) {
-                self.onMove= false
-            }
-        })
-
-
-
-    }
+ 
  
     move(){
         

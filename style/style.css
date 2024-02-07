@@ -40,7 +40,7 @@ body{
     height: 10vh;
     width: 100vw;
     z-index: 10;
-    background-image: url("../assets/ground.jpg");
+    background-image: url("../assets/Background/ground.jpg");
 }
 
 #ground{
@@ -95,7 +95,7 @@ body{
     height: 60vh;
     top:30vh;
     left: 110vw;
-    background-image: url("../assets/castleSprite.png");
+    background-image: url("../assets/Background/castleSprite.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -119,13 +119,13 @@ body{
 
 .lightningSprite{
 
-    background-image: url("../assets/lightningSprite.png");
+    background-image: url("../assets/Lightning/lightningSprite.png");
 }
 
 
 .lightningBurst{
 
-    background-image: url("../assets/burstSprite.png");
+    background-image: url("../assets/Lightning/burstSprite.png");
     background-size: cover;
     background-position: center;
      
