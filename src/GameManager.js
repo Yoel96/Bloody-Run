@@ -27,10 +27,8 @@ class GameManager{
 
         //Manejar botones del menu y mostrar el contexto
         this.event2 = document.querySelector("#menu button").addEventListener("click",()=>{
-             
             document.getElementById("menu").classList.remove("showMenu")
             document.getElementById("menu").classList.add("hideMenu")
-            
             this.startGame()
             console.log("menu Pulsado")
 
@@ -57,6 +55,7 @@ class GameManager{
     }
 
     reStartGame(){
+         
          this.player= null
          this.enviroment= null
          this.lightnings=[]
@@ -69,7 +68,6 @@ class GameManager{
 
 
     startGame(){
-        //creamos objeto del enemigo, del jugador y del entorno
         this.player= new Player(70.5, 45)
         this.player.start(this.playerLives)
         this.enviroment= new Enviroment(this.player)
@@ -129,7 +127,7 @@ class GameManager{
             this.enviroment.direction=this.direction
             this.enviroment.onMove=this.onMove
             }
-            
+
         })
 
 
@@ -145,11 +143,25 @@ class GameManager{
             let lightning= new Lightning(this.lightnings,this.player)
             lightning.createLightning()
             this.lightnings.push(lightning)
+            if(this.lightnings.length>10){
 
+                this.clearLightnings()
+
+            }
         },1500)
 
 
     }
+
+    clearLightnings(){
+
+        this.lightnings = this.lightnings.filter(enemy => {
+            return enemy.topPosition < 80
+          })
+
+ 
+    }
+
     
     timeController(){
 
@@ -185,20 +197,7 @@ class GameManager{
 
     }
 
-    progressController(){
-
-        if (direction==1){
-
-            this.progress++
-                
-        }else{
-            this.progress--
-        }
-        
-       
-
-        
-    }
+    
 
     gameWin(){
          this.player.playerStop(this.direction)    

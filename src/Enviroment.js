@@ -28,7 +28,6 @@ class Enviroment {
     this.groundLeft = 0;
     this.ground2Left = 100;
     this.castleLeft = 110;
-    console.log(this.castleLeft)
     this.progress = 0;
     this.opacity = 1;
     this.isOnCastle = false;
@@ -66,7 +65,9 @@ class Enviroment {
             this.castleSprite.style.left = this.castleLeft + "vw";
           }
 
+
         } else {
+
           this.progress--;
           this.groundLeft++;
           this.ground2Left++;
@@ -74,6 +75,7 @@ class Enviroment {
           if (this.groundLeft >= 100) {
             this.groundLeft = -100 + 1;
           }
+          
           if (this.ground2Left >= 100) {
             this.ground2Left = -100 + 1;
           }
@@ -82,6 +84,7 @@ class Enviroment {
             this.castleLeft++;
             this.castleSprite.style.left = this.castleLeft + "vw";
           }
+        
         }
 
         this.groundSprite.style.left = this.groundLeft + "vw";
@@ -97,31 +100,42 @@ class Enviroment {
 
 
   checkCollisions() {
+
     if (this.castleLeft <= this.player.leftPosition) {
+
       this.isOnCastle = true;
+
     } else {
+
       this.isOnCastle = false;
     }
+
   }
 
   backgroundChangesNight() {
+
     this.timerNight = setInterval(() => {
       this.opacity -= 0.01;
       this.nightBg.style.opacity = this.opacity;
     }, 500);
+
   }
 
   backgroundChangesSunrise() {
+
     this.timerMorning = setInterval(() => {
       this.opacity -= 0.01;
       this.sunriseBg.style.opacity = this.opacity;
     }, 500);
+
   }
 
   changeSky() {
+
     this.backgroundChangesNight();
     setTimeout(() => {
       this.backgroundChangesSunrise();
     }, 700);
+    
   }
 }

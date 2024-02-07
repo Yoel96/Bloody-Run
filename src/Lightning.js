@@ -150,9 +150,7 @@ class Lightning{
                 document.getElementById("enemiesSpawn").removeChild(this.lightningSprite)
                 
                 
-                this.lightnings = this.lightnings.filter(enemy => {
-                    return enemy !== this.lightningSprite
-                  })
+                 
 
 
                  },1000)
