@@ -14,38 +14,69 @@ class GameManager{
         this.direction=1
         this.lightnings=[]
         this.gameOverAudio
-        this.isGameOver=false
+        this.isGameOver 
+        this.event
+        this.event2
         
  
     }
 
 
 
-    menu(){
+    startMenu(){
 
         //Manejar botones del menu y mostrar el contexto
-        document.querySelector("#menu button").addEventListener("click",()=>{
+        this.event2 = document.querySelector("#menu button").addEventListener("click",()=>{
              
-            document.querySelector("#menu").style.display="none"
+            document.getElementById("menu").classList.remove("showMenu")
+            document.getElementById("menu").classList.add("hideMenu")
+            
             this.startGame()
+            console.log("menu Pulsado")
 
         })
+
+
 
       
 
     }
 
 
+    gameOverMenu(){
+        document.getElementById("gameOver").classList.add("showMenu")
+        document.getElementById("gameOver").classList.remove("hideMenu")
+
+        this.event=document.querySelector("#gameOver button").addEventListener("click",()=>{
+            document.getElementById("gameOver").classList.remove("showMenu")
+            document.getElementById("gameOver").classList.add("hideMenu")
+            this.reStartGame()
+            console.log("menu Pulsado")
+
+        })
+    }
+
+    reStartGame(){
+         this.player= null
+         this.enviroment= null
+         this.lightnings=[]
+         this.isGameOver=false
+         this.currentTime=0
+         this.event=null
+         this.event2=null
+         this.startGame()
+    }
+
 
     startGame(){
         //creamos objeto del enemigo, del jugador y del entorno
-        this.player= new Player(70.5, 45, this.playerLives)
-        this.player.start()
+        this.player= new Player(70.5, 45)
+        this.player.start(this.playerLives)
         this.enviroment= new Enviroment(this.player)
         this.enviroment.start()
-        this.enviroment.changeSky()
-        this.onGame()
+        this.enviroment.changeSky()       
         this.gameOverAudio=new Audio("../assets/Sound/loseSound.mp3")
+        this.onGame()
     }
 
 
@@ -91,11 +122,14 @@ class GameManager{
             if ( event.code=== "KeyD" && this.onMove  ) {
                 this.onMove= false
             }
+
+
             if( !this.isGameOver){
             this.player.playerStop(this.direction)
             this.enviroment.direction=this.direction
             this.enviroment.onMove=this.onMove
             }
+            
         })
 
 
@@ -110,7 +144,7 @@ class GameManager{
     
             let lightning= new Lightning(this.lightnings,this.player)
             lightning.createLightning()
-            this.lightnings.push(lightning.lightningSprite)
+            this.lightnings.push(lightning)
 
         },1500)
 
@@ -121,7 +155,6 @@ class GameManager{
 
         this.timeInterval= setInterval(()=>{
             this.player.checkIsAlive()
-            console.log(this.enviroment.isOnCastle)
             if( this.enviroment.isOnCastle){
                 this.isGameOver=true   
 
@@ -131,7 +164,6 @@ class GameManager{
 
             if(this.player.isAlive){
                 this.currentTime+=0.5
-                console.log(this.currentTime)
                 if(this.currentTime>=this.matchTimer){
     
                 this.isGameOver=true   
@@ -163,18 +195,14 @@ class GameManager{
             this.progress--
         }
         
-        if(progress>=1000){
+       
 
-
-
-        }
-
-
+        
     }
 
     gameWin(){
          this.player.playerStop(this.direction)    
-        this.clearIntervals()
+        this.clearAllIntervals()
 
 
     }
@@ -182,17 +210,23 @@ class GameManager{
     gameOver(){
         
         this.gameOverAudio.play()
-        this.clearIntervals()
+        this.clearAllIntervals()
         this.player.playerSprite.setAttribute("class", "deathAnimation")
-        this.menu()
+        this.gameOverMenu()
+ 
+         
 
     }
 
 
-    clearIntervals(){
+    clearAllIntervals(){
      
+        this.lightnings.forEach((lightning)=>{
+            clearInterval(lightning.moveInterval)
+        })
+
         clearInterval(this.timeInterval)
-        clearInterval(this.spawnInterval)
+        clearInterval(this.spawnInterval) 
         clearInterval(this.enviroment.enviromentInterval)  
         clearInterval(this.enviroment.timerMorning)
         clearInterval(this.enviroment.timerNight)
@@ -206,4 +240,4 @@ class GameManager{
 
 
 const gM= new GameManager(25,3)
-gM.menu()
+gM.startMenu()

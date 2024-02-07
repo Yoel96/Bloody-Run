@@ -128,6 +128,7 @@ class Lightning{
     removeBloodDrop(){
 
          const bloodDrops= Array.from(document.querySelectorAll("#livesContainer img"))
+         console.log("blodDrops"+bloodDrops)
          if(bloodDrops.length>0){   
          bloodDrops[this.player.lives-1].remove()
          }
@@ -139,7 +140,7 @@ class Lightning{
             clearInterval(this.moveInterval)
             if(isHit){
                 this.showBurst()
-                
+
             }   
             this.lightningSprite.classList.remove("lightningSprite")
             this.lightningSprite.classList.add("lightningBurst")
@@ -147,10 +148,14 @@ class Lightning{
             setTimeout(()=>{
                 this.player.playerSprite.classList.remove("playerHit")
                 document.getElementById("enemiesSpawn").removeChild(this.lightningSprite)
+                
+                
                 this.lightnings = this.lightnings.filter(enemy => {
                     return enemy !== this.lightningSprite
                   })
-                 },500)
+
+
+                 },1000)
                  
          
     

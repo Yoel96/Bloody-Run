@@ -1,14 +1,13 @@
 class Player{
 
-    constructor(topPosition,leftPosition,lives){
+    constructor(topPosition,leftPosition){
 
         this.playerSprite
         this.topPosition= topPosition
         this.leftPosition= leftPosition
         this.playerWidth=10
         this.playerHeight = 10
-        this.sprites=["","","",""]
-        this.lives = lives
+        this.lives = 3
         this.isAlive = true;
         this.runningAudio
         
@@ -18,8 +17,8 @@ class Player{
 
 
     start(){
-
         this.playerSprite=document.getElementById("player")
+        this.playerSprite.classList.remove("class","deathAnimation")
         this.playerSprite.style.left=this.leftPosition + "vw"
         this.playerSprite.style.width=this.playerWidth + "vw"
         this.playerSprite.style.top=this.topPosition + "vh"
@@ -31,9 +30,8 @@ class Player{
 
     showLives(){
 
-      
         for(let i=0;i<this.lives;i++){
-            console.log(i)
+            console.log();
             let live = document.createElement("img")
             live.setAttribute("src", "../assets/blood.png")
             live.classList.add("liveImage")
@@ -49,6 +47,7 @@ class Player{
         if(this.lives>0){
         this.isAlive=true
         }else{
+        
         this.isAlive =false
         }
     }
@@ -61,8 +60,14 @@ class Player{
 
             this.runningAudio.play()
             if(direction==1){
+                this.playerSprite.classList.add("class","runningAnimation")
+                this.playerSprite.classList.remove("class","runningLeftAnimation")
 
-                this.playerSprite.setAttribute("class","runningAnimation")
+            }else{
+                this.playerSprite.classList.add("class","runningLeftAnimation")
+                this.playerSprite.classList.remove("class","runningAnimation")
+
+
             }
 
          
@@ -76,9 +81,21 @@ class Player{
 
 
     playerStop(direction){
+        this.playerSprite.classList.remove("class","runningAnimation")
+        this.playerSprite.classList.remove("class","runningLeftAnimation")
 
-        this.playerSprite.setAttribute("class","idleAnimation")
-        this.runningAudio.pause()
+
+        if(direction==1){
+            this.playerSprite.classList.add("class","idleAnimation")
+            this.playerSprite.classList.remove("class","idleLeftAnimation")
+
+        }else{
+            this.playerSprite.classList.add("class","idleLeftAnimation")
+            this.playerSprite.classList.remove("class","idleAnimation")
+            
+        }
+
+         this.runningAudio.pause()
     }
 
    
