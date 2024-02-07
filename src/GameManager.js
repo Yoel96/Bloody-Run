@@ -13,6 +13,8 @@ class GameManager {
     this.lightnings = [];
     this.gameOverAudio;
     this.isGameOver;
+    this.gameAudio
+    this.gameWinAudio
     
   }
 
@@ -28,7 +30,7 @@ class GameManager {
       document.getElementById("context").classList.add("hideMenu");
       document.getElementById("menu").classList.add("showMenu");
       document.getElementById("menu").classList.remove("hideMenu");
-      this.startMenu();
+       
     });
 
     document.querySelector("#menu button").addEventListener("click", () => {
@@ -109,6 +111,11 @@ class GameManager {
     this.enviroment.start();
     this.enviroment.changeSky();
     this.gameOverAudio = new Audio("../assets/Sound/loseSound.mp3");
+    this.gameAudio=new Audio("../assets/Sound/gameOST.mp3")
+    this.gameAudio.loop=true
+    this.gameAudio.volume=0.5
+    this.gameAudio.play()
+    this.gameWinAudio=new Audio ("../assets/Sound/vampireLaugh.mp3")
     this.onGame();
   }
 
@@ -116,8 +123,7 @@ class GameManager {
     //manejar el juego
     this.timeController();
     this.spawnLightning();
-    this.checkInputs();
-  }
+   }
 
  
 
@@ -162,12 +168,15 @@ class GameManager {
   }
 
   gameWin() {
+    this.gameAudio.pause();
+    this.gameWinAudio.play()
     this.player.playerStop(this.direction);
     this.clearAllIntervals();
     this.gameWinMenu();
   }
 
   gameOver() {
+    this.gameAudio.pause();
     this.gameOverAudio.play();
     this.player.playerStop(this.direction);
     this.clearAllIntervals();
