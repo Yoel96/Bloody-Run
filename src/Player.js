@@ -11,6 +11,7 @@ class Player{
         this.isAlive = true;
         this.runningAudio
         
+
         
     }
 
@@ -53,7 +54,6 @@ class Player{
         if(this.lives>0){
         this.isAlive=true
         }else{
-        
         this.isAlive =false
         }
     }

@@ -51,15 +51,17 @@ class GameManager {
         if (event.code === "KeyA" && !this.onMove) {
           this.onMove = true;
           this.direction = -1;
+          this.player.playerMoving(this.direction);
         }
   
         if (event.code === "KeyD" && !this.onMove) {
           this.onMove = true;
           this.direction = 1;
+          this.player.playerMoving(this.direction);
         }
   
         if (!this.isGameOver) {
-          this.player.playerMoving(this.direction);
+          
           this.enviroment.direction = this.direction;
           this.enviroment.onMove = this.onMove;
         }
@@ -81,6 +83,12 @@ class GameManager {
         }
       });
   }
+
+
+
+
+
+
 
   gameOverMenu() {
     document.getElementById("gameOver").classList.add("showMenu");
@@ -116,15 +124,11 @@ class GameManager {
     this.gameAudio.volume=0.5
     this.gameAudio.play()
     this.gameWinAudio=new Audio ("../assets/Sound/vampireLaugh.mp3")
-    this.onGame();
-  }
-
-  onGame() {
-    //manejar el juego
     this.timeController();
     this.spawnLightning();
-   }
+  }
 
+ 
  
 
   spawnLightning() {
