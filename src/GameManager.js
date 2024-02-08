@@ -114,9 +114,9 @@ class GameManager {
 
   initializeMusic(){
 
-    this.gameWinAudio=new Audio ("../assets/Sound/vampireLaugh.mp3")
-    this.gameOverAudio = new Audio("../assets/Sound/loseSound.mp3");
-    this.gameAudio=new Audio("../assets/Sound/gameOST.mp3")
+    this.gameWinAudio=new Audio ("/Bloody-Run/assets/Sound/vampireLaugh.mp3")
+    this.gameOverAudio = new Audio("/Bloody-Run/assets/Sound/loseSound.mp3");
+    this.gameAudio=new Audio("/Bloody-Run/assets/Sound/gameOST.mp3")
     this.gameAudio.loop=true
     this.gameAudio.volume=0.4
     this.gameAudio.play()
