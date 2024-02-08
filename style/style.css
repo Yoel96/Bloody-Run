@@ -117,6 +117,15 @@ body{
 
 }
 
+
+.lightningMQ{
+    background-size: contain;
+    transform: rotate(-50deg);
+    background-image: url("../assets/Lightning/mcqueen.webp");
+}
+
+
+
 .lightningSprite{
 
     background-image: url("../assets/Lightning/lightningSprite.png");

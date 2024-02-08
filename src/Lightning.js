@@ -1,6 +1,6 @@
 class Lightning{
 
-    constructor(lightnings,player){
+    constructor(lightnings,player,mcQueen){
         self=this
         this.lightningSprite
         this.leftPosition
@@ -13,6 +13,7 @@ class Lightning{
         this.player=player
         this.lightningHeight= 21
         this.shockAudio
+        this.mcQueenController=mcQueen
  
     }
 
@@ -21,10 +22,20 @@ class Lightning{
         this.leftPosition=10+Math.floor(Math.random()*70)
         this.lightningSprite=document.createElement("div")
         this.lightningSprite.classList.add("lightning")
-        this.lightningSprite.classList.add("lightningSprite")
+        if(this.mcQueenController){
+            this.lightningSprite.classList.add("lightningMQ")
+
+            this.shockAudio= new Audio("../assets/Sound/mcQueenSound.mp3")
+            this.shockAudio.volume=1
+
+            this.lightningSprite.style.width=20+"vw"
+
+        }else{
+            this.lightningSprite.classList.add("lightningSprite")
+            this.shockAudio= new Audio("../assets/Sound/shockSound.mp3")
+        }
         this.lightningSprite.style.left= this.leftPosition+"vw"
         document.getElementById("enemiesSpawn").appendChild(this.lightningSprite)
-        this.shockAudio= new Audio("../assets/Sound/shockSound.mp3")
         this.move()
      }
 
@@ -33,7 +44,7 @@ class Lightning{
  
     move(){
         
-      
+      this.shockAudio.play()
         
 
         this.moveInterval=setInterval(()=>{
@@ -86,9 +97,13 @@ class Lightning{
     
           this.removeLightning(true)
           this.removeBloodDrop()
-          this.player.lives--
-          console.log(this.player.lives)
-       
+          if(this.mcQueenController){
+            this.player.lives=0
+          }else{
+            this.player.lives--
+
+          }
+        
         }
 
 

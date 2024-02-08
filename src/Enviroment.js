@@ -82,15 +82,10 @@ class Enviroment {
        
           }
 
-         
-
-
-
           if (this.progress > 600) {
             this.castleLeft--;
             this.castleSprite.style.left = this.castleLeft + "vw";
           }
-
 
         } else {
 

@@ -15,6 +15,7 @@ class GameManager {
     this.isGameOver;
     this.gameAudio
     this.gameWinAudio
+    this.mcqueenCounter=0
     
   }
 
@@ -44,6 +45,9 @@ class GameManager {
 
     document.querySelector("#gameWin button").addEventListener("click", () => {
         this.hideMenu("gameWin")
+        this.gameAudio.pause()
+        this.gameAudio=new Audio("../assets/Sound/gameOST.mp3")
+
         this.gameAudio.currentTime = 0
         this.gameAudio.play()
         this.startGame();    
@@ -118,7 +122,7 @@ class GameManager {
     this.gameOverAudio = new Audio("../assets/Sound/loseSound.mp3");
     this.gameAudio=new Audio("../assets/Sound/gameOST.mp3")
     this.gameAudio.loop=true
-    this.gameAudio.volume=0.4
+    this.gameAudio.volume=0.1
     this.gameAudio.play()
 
 
@@ -128,6 +132,7 @@ class GameManager {
     document.getElementById(menuId).classList.add("showMenu");
     document.getElementById(menuId).classList.remove("hideMenu");
 
+     
   }
 
 
@@ -141,6 +146,7 @@ class GameManager {
   startGame() {
     document.getElementById("enemiesSpawn").innerHTML = "";
     this.currentTime = 0;
+    this.mcqueenCounter=0
     this.currentTime = 0;
     this.lightnings = [];
     this.isGameOver = false;
@@ -157,8 +163,18 @@ class GameManager {
  
 
   spawnLightning() {
+    
     this.spawnInterval = setInterval(() => {
-      let lightning = new Lightning(this.lightnings, this.player);
+      this.mcqueenCounter++
+      let lightning
+      if(this.mcqueenCounter>5){
+       lightning = new Lightning(this.lightnings, this.player, true);
+       this.mcqueenCounter=0
+      }else{
+      lightning = new Lightning(this.lightnings, this.player, false);
+
+      }
+
       lightning.createLightning();
       this.lightnings.push(lightning);
       if (this.lightnings.length > 10) {
@@ -196,8 +212,12 @@ class GameManager {
   }
 
   gameWin() {
+    this.gameAudio.pause()
+    this.gameAudio=new Audio("../assets/Sound/winningMusic.mp3")
+    this.gameAudio.play();
+    this.gameAudio.loop=true
     this.showMenu("gameWin")
-    this.gameAudio.pause();
+ 
     this.gameWinAudio.play()
     this.player.playerStop(this.direction);
     this.clearAllIntervals();
