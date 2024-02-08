@@ -24,7 +24,7 @@ class Player{
         this.playerSprite.style.left=this.leftPosition + "vw"
         this.playerSprite.style.width=this.playerWidth + "vw"
         this.playerSprite.style.top=this.topPosition + "vh"
-        this.runningAudio= new Audio("/assets/Sound/runningSound.mp3")
+        this.runningAudio= new Audio("../assets/Sound/runningSound.mp3")
         this.runningAudio.loop=true
         this.showLives()
     }
