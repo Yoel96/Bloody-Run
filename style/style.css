@@ -204,28 +204,44 @@ body{
 
 
 
-#storm section{
+#storm1, #storm2{
+
+    position: relative;
+    background-size: contain;
+    width: 120vw;
+    height: 20vh;   
+    z-index: 50;
+    top:0;
+}
+
+#storm1{
+    left: 0vh;
+}
+
+#storm2{
+    top: -20vh;
+    left: 100vh;
+
+}
+
+#storm1 section, #storm2 section{
 
     position: absolute;
     background-size: contain;
     width: 120vw;
     height: 15vh;   
-     z-index: 50;
-
-    top:0;
+  
 }
-
-
  
 
-#cloud1{
+.cloud1{
 
     background-image: url("../assets/clouds/clouds2/cloud_shape2_2.png");
      z-index: 6;
 
 }
 
-#cloud2{
+.cloud2{
 
     background-image: url("../assets/clouds/cloud_shape3_2.png"); 
     left: -1vw;
@@ -234,7 +250,7 @@ body{
 }
 
 
-#cloud3{
+.cloud3{
 
     background-image: url("../assets/clouds/cloud_shape3_4.png");
     left: -3vw;
@@ -242,7 +258,7 @@ body{
 
 }
 
-#cloud4{
+.cloud4{
 
     background-image: url("../assets/clouds/cloud_shape4_2.png");
     left: -29vw;
@@ -251,7 +267,7 @@ body{
 }
 
 
-#cloud5{
+.cloud5{
 
     background-image: url("../assets/clouds/cloud_shape3_1.png");
     left: 0vw;
