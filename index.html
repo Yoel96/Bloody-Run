@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> 
+    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="src/Enviroment.js" defer></script>
+    <script src="src/Lightning.js" defer></script>
+    <script src="src/Player.js" defer></script> 
+    <script src="src/GameManager.js" defer></script>
+
 </head>
 <body>
     <section id="canvas">
@@ -16,19 +22,62 @@
                 <section id="morning" class="sky" > </section>
             </section>
 
+             <section id="storm"  >
+                <section id="cloud1"></section>
+                <section id="cloud2"></section>
+                <section id="cloud3"></section>
+                <section id="cloud4"></section>
+                <section id="cloud5"></section>
+            </section>
+
+            <section id="livesContainer"></section>
             <section id="enemy"> </section>
-            <section id="player"></section>
+            
+            <section id="enemiesSpawn"></section>
+            <section id="player" class="idleAnimation"></section>
             <section id="ground"></section>
             <section id="ground2"></section>
-
+            <section id="castle"></section>
 
         </section>
 
-        <section class="gameSection" id="menu"></section>
-        <section class="gameSection" id="context"></section>
-        <section class="gameSection" id="gameOver"></section>
+        <section class="gameSection hideMenu" id="menu">
+            <div class="mainMenu">
+            <h1>Bloody Run</h1>
+            <button>Play</button>
+            </div>
+        </section>
 
+        
+        <section class="gameSection  "  id="context">
+            <div id="intro">
+                <p>
+                    December 1875, the night seemed perfect to go out hunting. 
+                    But I never imagined that I would have to run for my life escaping from this terrible storm, if it continues like this I will not be able to reach my castle before the sun rises. 
+                    I am Countess Raven and I need your help to survive this night.
+                </p>
+                <h2>Controls:</h2>
+                <p>
+                    A- moving left <br>
+                    D- moving right
+                </p>
+                <button id="skip">Skip</button>
+            </div>
+        </section>
 
+        <section class="gameSection hideMenu" id="gameOver">
+            <div class="mainMenu">
+                <h1>Game Over</h1>
+                <button>Play Again</button>
+            </div>
+        </section>
+ 
+        <section class="gameSection hideMenu" id="gameWin">
+            <div class="mainMenu">
+                <h1>You Win</h1>
+                <button>Play Again</button>
+            </div>
+        </section>
     </section>
 
 </body>

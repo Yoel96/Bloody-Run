@@ -1,165 +1,229 @@
-class GameManager{
+class GameManager {
+  constructor(matchTimer, playerLives) {
+    self = this;
+    this.matchTimer = matchTimer;
+    this.currentTime = 0;
+    this.timeInterval;
+    this.spawnInterval;
+    this.player;
+    this.playerLives = playerLives;
+    this.enviroment;
+    this.onMove = false;
+    this.direction = 1;
+    this.lightnings = [];
+    this.gameOverAudio;
+    this.isGameOver;
+    this.gameAudio
+    this.gameWinAudio
+    
+  }
 
-    constructor(matchTimer,playerLives){
+  initializeEvents() {
 
-        self=this
-        this.matchTimer=matchTimer
-        this.currentTime=0
-        this.progress=0
-        this.moveInterval
-        this.timeInterval
-        this.player
-        this.playerLives=playerLives
-        this.enemy
-        this.enemies=[]
-        this.enviroment
-        this.onMove=false
-        this.direction=1
-
-
-    }
-
-
-
-    menu(){
-
-        //Manejar botones del menu y mostrar el contexto
+    this.initializeMusic()
 
 
-    }
+    document.querySelector("#gameOver button").addEventListener("click", () => {
+      this.hideMenu("gameOver")
+      this.gameAudio.currentTime = 0
+       this.gameAudio.play()
+      this.startGame();
+    
+    });
+
+    document.getElementById("skip").addEventListener("click", () => {
+      this.hideMenu("context")
+      this.showMenu("menu")
+       
+    });
+
+    document.querySelector("#menu button").addEventListener("click", () => {
+      this.hideMenu("menu")
+      this.startGame();
+     });
+
+    document.querySelector("#gameWin button").addEventListener("click", () => {
+        this.hideMenu("gameWin")
+        this.gameAudio.currentTime = 0
+        this.gameAudio.play()
+        this.startGame();    
+
+        });
 
 
+      window.addEventListener("keydown", (event) => {
 
-    startGame(){
-        //creamos objeto del enemigo, del jugador y del entorno
-        this.player=  new Player()
-        this.player.start()
-        this.enviroment= new Enviroment()
-        this.enviroment.start()
-        this.enemy= new Enemy(this.enemies)
-        this.enemy.start()
-        this.onGame()
-    }
+        if(event.code === "KeyA" ||event.code === "KeyD"){
 
-
-
-    onGame(){
-        //manejar el juego
-        this.timeController()
-        this.moveController()
-        //inputs de los botones
-        window.addEventListener("keydown", (event) => {
-            if (event.code=== "KeyA" && !self.onMove)  {
-                self.onMove=true
-                self.direction= -1  
-                
-            }
-        
-            if ( event.code=== "KeyD" && !self.onMove) {
-                self.onMove=true
-                self.direction= 1   
-            }
-        })
-
-        window.addEventListener("keyup", (event) => {
-            if (event.code=== "KeyA" && self.onMove)  {
-                self.onMove= false
-            }
-        
-            if ( event.code=== "KeyD" && !self.onMove) {
-                self.onMove= false
-            }
-        })
-    }
-
-
-    moveController(){
-
-        this.moveInterval=setInterval(()=>{
-
-            if(self.onMove){
-                self.enemy.spawnEnemies()
-                self.player.move(direction)
-                self.enviroment.move(self.direction)
-                if(self.enemies.length>0){
-                    self.enemies.forEach((enemy)=>{
-                        enemy.move(direction)
-                    })
-                }
-                
-            }            
-
-        },16)
-
-
-    }
-
-
-
-    timeController(){
-
-        timeInterval= setInterval(()=>{
-            self.currentTime++
-            if(self.currentTime>=(self.matchTimer/3)){
-
-                self.enviroment.changeSky()
-
-            }
-
-            if(self.currentTime>=(self.matchTimer/2)){
-
-                self.enviroment.changeSky()
-
-
-            }
-
-
-            if(self.currentTime>=(self.matchTimer)){
-
-                self.gameOver()
-
-            }
-        },1000)
-        
-
-    }
-
-    progressController(){
-
-        if (direction==1){
-
-            this.progress++
-                
-        }else{
-            this.progress--
+        if (event.code === "KeyA" && !this.onMove) {
+          this.onMove = true;
+          this.direction = -1;
+         }
+  
+        if (event.code === "KeyD" && !this.onMove) {
+          this.onMove = true;
+          this.direction = 1;
+   
         }
-        
-        if(progress>=1000){
+  
+        if (!this.isGameOver && this.onMove ) {
+          this.player.playerMoving(this.direction); 
+          this.changeMovementState()
+        }
+      }
+      });
+  
+      window.addEventListener("keyup", (event) => {
 
-
+        if(event.code === "KeyA" ||event.code === "KeyD"){
+        if (event.code === "KeyA" && this.onMove) {
+          this.onMove = false;
+        }
+  
+        if (event.code === "KeyD" && this.onMove) {
+          this.onMove = false;
+        }
+  
+        if (!this.isGameOver) {
+          this.player.playerStop(this.direction);
+          this.changeMovementState()
 
         }
+      }
 
-        if(progress>=1100){
 
-            this.gameWin()
+      });
 
+    
+  }
+
+
+  changeMovementState(){
+
+    this.enviroment.direction = this.direction;
+    this.enviroment.onMove = this.onMove;
+    this.lightnings.forEach((lightning)=>{
+
+      lightning.direction = this.direction;
+      lightning.onMove = this.onMove;
+
+    })
+
+
+  }
+
+  initializeMusic(){
+
+    this.gameWinAudio=new Audio ("../assets/Sound/vampireLaugh.mp3")
+    this.gameOverAudio = new Audio("../assets/Sound/loseSound.mp3");
+    this.gameAudio=new Audio("../assets/Sound/gameOST.mp3")
+    this.gameAudio.loop=true
+    this.gameAudio.volume=0.4
+    this.gameAudio.play()
+
+
+  }
+
+  showMenu(menuId){
+    document.getElementById(menuId).classList.add("showMenu");
+    document.getElementById(menuId).classList.remove("hideMenu");
+
+  }
+
+
+  hideMenu(menuId){
+    document.getElementById(menuId).classList.remove("showMenu");
+    document.getElementById(menuId).classList.add("hideMenu");
+
+  }
+
+  
+  startGame() {
+    document.getElementById("enemiesSpawn").innerHTML = "";
+    this.currentTime = 0;
+    this.currentTime = 0;
+    this.lightnings = [];
+    this.isGameOver = false;
+    this.player = new Player(70.5, 45);
+    this.player.start(this.playerLives);
+    this.enviroment = new Enviroment(this.player);
+    this.enviroment.start();
+    this.enviroment.changeSky();
+    this.timeController();
+    this.spawnLightning();
+  }
+
+ 
+ 
+
+  spawnLightning() {
+    this.spawnInterval = setInterval(() => {
+      let lightning = new Lightning(this.lightnings, this.player);
+      lightning.createLightning();
+      this.lightnings.push(lightning);
+      if (this.lightnings.length > 10) {
+        this.clearLightnings();
+      }
+    }, 1500);
+  }
+
+  clearLightnings() {
+    this.lightnings = this.lightnings.filter((enemy) => {
+      return enemy.topPosition < 80;
+    });
+  }
+
+  timeController() {
+    this.timeInterval = setInterval(() => {
+      this.player.checkIsAlive();
+      if (this.enviroment.isOnCastle) {
+        this.isGameOver = true;
+
+        this.gameWin();
+      }
+
+      if (this.player.isAlive) {
+        this.currentTime += 0.1;
+        if (this.currentTime >= this.matchTimer) {
+          this.isGameOver = true;
+          this.gameOver();
         }
+      } else {
+        this.isGameOver = true;
+        this.gameOver();
+      }
+    }, 100);
+  }
 
-    }
+  gameWin() {
+    this.showMenu("gameWin")
+    this.gameAudio.pause();
+    this.gameWinAudio.play()
+    this.player.playerStop(this.direction);
+    this.clearAllIntervals();
+  }
 
-    gameWin(){
+  gameOver() {
+    this.showMenu("gameOver")
+    this.gameAudio.pause();
+    this.gameOverAudio.play();
+    this.player.playerStop(this.direction);
+    this.clearAllIntervals();
+    this.player.playerSprite.setAttribute("class", "deathAnimation");
+  }
 
+  clearAllIntervals() {
 
-
-    }
-
-    gameOver(){
-
-        clearInterval(this.moveInterval)
-        this.menu()
-
-    }
+    clearInterval(this.timeInterval);
+    clearInterval(this.spawnInterval);
+    clearInterval(this.enviroment.enviromentInterval);
+    clearInterval(this.enviroment.timerMorning);
+    clearInterval(this.enviroment.timerNight);
+     
+  }
 
 
 }
+
+const gM = new GameManager(24, 3);
+gM.initializeEvents();

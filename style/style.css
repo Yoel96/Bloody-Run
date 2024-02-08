@@ -1,0 +1,484 @@
+@font-face {
+    font-family: menuFont;
+    src: url("../assets/Font/BloodMoon-Regular.ttf");
+  }
+
+body{
+    overflow: hidden;
+    
+}
+
+.sky{
+    position: absolute;
+    display: block;
+    top: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    left:0;
+}
+
+#morning{
+    z-index: 1;
+    background-image: url("../assets/Background/Clouds 5.png");
+}
+
+#sunrise{
+    z-index: 2;
+ background-image: url("../assets/Background/Clouds 7.png");
+}
+
+#night{
+    z-index: 3;
+    background-image: url("../assets/Background/Clouds 3.png");
+}
+
+#ground, #ground2{
+    position: absolute;
+    top:90vh;
+    height: 10vh;
+    width: 100vw;
+    z-index: 10;
+    background-image: url("../assets/Background/ground.jpg");
+}
+
+#ground{
+
+    left: 0vw;
+    background-color: rgb(92, 92, 253);
+
+}
+
+#ground2{
+
+    left: 100vw;
+ 
+
+}
+
+
+#livesContainer{
+
+    top: 4vh;
+    left: 2vw;
+    position: absolute;
+    z-index: 50;
+    width: 20vw;
+}
+
+#livesContainer img{
+
+ 
+    width: 12%;
+}
+
+#player{
+
+    position: absolute;
+    width: 10vw;
+    height: 20vh;
+    top:70.5vh;
+    left:45vw;
+    z-index: 40;
+    background-repeat: no-repeat;
+    background-position: center;
+   
+
+
+}
+
+
+#castle{
+    position: absolute;
+    width: 50vw;
+    height: 60vh;
+    top:30vh;
+    left: 110vw;
+    background-image: url("../assets/Background/castleSprite.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: 20;
+
+
+}
+
+.lightning{
+
+    position: absolute;
+    width: 5vw;
+    height: 21vh;
+    top: -5vh;
+    left: 0;
+    transform: rotate(15deg);
+    background-repeat: no-repeat;
+    z-index: 40;
+
+}
+
+.lightningSprite{
+
+    background-image: url("../assets/Lightning/lightningSprite.png");
+}
+
+
+.lightningBurst{
+
+    background-image: url("../assets/Lightning/burstSprite.png");
+    background-size: cover;
+    background-position: center;
+     
+}
+
+
+.playerHit{
+
+    filter: drop-shadow(16px 16px 20px red) invert(75%);
+
+ }
+
+ 
+.mainMenu{
+
+
+    margin: auto;
+    display: block;
+    margin-top: 15%;
+    width: 50%;
+
+}
+
+.mainMenu h1{
+
+    text-align: center;
+    font-family: menuFont;
+    color: red;
+    font-size: 160px;
+    -webkit-text-stroke-width: 3px;
+    margin: 0 0 2% 0;
+    -webkit-text-stroke-color: rgb(230, 0, 0);
+
+}
+
+.mainMenu button,#skip{
+
+    margin: auto;
+    display: block;
+    background:none;
+    color: white;
+    border: 0px;
+    font-family: menuFont;
+
+}
+
+.mainMenu button{
+    font-size: 100px;
+
+}
+
+.mainMenu button:hover, #skip:hover{
+
+    border-bottom: 4px solid white;
+    cursor: pointer;
+}
+
+#skip{
+    font-size: 80px;
+
+}
+
+
+.hideMenu{
+
+    display: none;
+ 
+}
+
+.showMenu{
+ 
+    display: block;
+    animation: showText 1s forwards;
+
+}
+
+
+
+#storm section{
+
+    position: absolute;
+    background-size: contain;
+    width: 120vw;
+    height: 15vh;   
+     z-index: 50;
+
+    top:0;
+}
+
+
+ 
+
+#cloud1{
+
+    background-image: url("../assets/clouds/clouds2/cloud_shape2_2.png");
+     z-index: 6;
+
+}
+
+#cloud2{
+
+    background-image: url("../assets/clouds/cloud_shape3_2.png"); 
+    left: -1vw;
+    z-index: 4;
+
+}
+
+
+#cloud3{
+
+    background-image: url("../assets/clouds/cloud_shape3_4.png");
+    left: -3vw;
+    z-index: 5;
+
+}
+
+#cloud4{
+
+    background-image: url("../assets/clouds/cloud_shape4_2.png");
+    left: -29vw;
+    z-index: 4;
+
+}
+
+
+#cloud5{
+
+    background-image: url("../assets/clouds/cloud_shape3_1.png");
+    left: 0vw;
+    z-index: 3;
+
+}
+
+
+#storm section{
+
+     animation: stormMove 10s infinite;
+
+}
+
+
+@keyframes stormMove {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    35% {
+        transform: translate(5px, 10px);  
+      }
+    70% {
+        transform: translate(0px, 0px);}
+
+    100% {
+       transform: translate(5px, 15px); 
+    }
+    
+
+}
+
+
+
+
+
+ .idleAnimation{
+
+animation: idleAnimation 2s infinite forwards ;
+
+}
+
+ 
+
+@keyframes idleAnimation{
+    
+    0% {
+        background-image: url("../assets/Vampire/Idle/1.png");
+    }
+    35% {
+        background-image: url("../assets/Vampire/Idle/2.png");
+    }
+    70% {
+        background-image: url("../assets/Vampire/Idle/3.png");
+    }
+    100% {
+        background-image: url("../assets/Vampire/Idle/4.png");
+    }
+}
+
+
+.idleLeftAnimation{
+
+    animation: idleLeftAnimation 2s infinite forwards ;
+    
+    }
+    
+     
+    
+    @keyframes idleLeftAnimation{
+        
+        0% {
+            background-image: url("../assets/Vampire/IdleLeft/1.png");
+        }
+        35% {
+            background-image: url("../assets/Vampire/IdleLeft/2.png");
+        }
+        70% {
+            background-image: url("../assets/Vampire/IdleLeft/3.png");
+        }showText
+        100% {
+            background-image: url("../assets/Vampire/IdleLeft/4.png");
+        }
+    }
+    
+
+
+
+.runningAnimation{
+
+    animation: runningAnimation 2s infinite ;
+
+}
+
+
+
+@keyframes runningAnimation{
+
+    0% {
+        background-image: url("../assets/Vampire/Running/1.png");
+    }
+    20% {
+        background-image: url("../assets/Vampire/Running/2.png");
+    }
+    40% {
+        background-image: url("../assets/Vampire/Running/3.png");
+    }
+    60% {
+        background-image: url("../assets/Vampire/Running/4.png");
+    }
+    80% {
+        background-image: url("../assets/Vampire/Running/5.png");
+    }
+    100% {
+        background-image: url("../assets/Vampire/Running/6.png");
+    }
+}
+
+
+
+.runningLeftAnimation{
+
+    animation: runningLeftAnimation 2s infinite ;
+
+}
+
+
+
+@keyframes runningLeftAnimation{
+
+    0% {
+        background-image: ushowTextrl("../assets/Vampire/RunningLeft/1.png");
+    }
+    20% {
+        background-image: url("../assets/Vampire/RunningLeft/2.png");
+    }
+    40% {
+        background-image: url("../assets/Vampire/RunningLeft/3.png");
+    }
+    60% {
+        background-image: url("../assets/Vampire/RunningLeft/4.png");
+    }
+    80% {
+        background-image: url("../assets/Vampire/RunningLeft/5.png");
+    }
+    100% {
+        background-image: url("../assets/Vampire/RunningLeft/6.png");
+    }
+}
+
+
+
+.deathAnimation{
+
+    animation: deathAnimation 2s ;
+
+}
+
+@keyframes deathAnimation{
+    
+    0% {
+        background-image: url("../assets/Vampire/Death/1.png");
+    }
+    25% {
+        background-image: url("../assets/Vampire/Death/2.png");
+    }
+    50% {
+        background-image: url("../assets/Vampire/Death/3.png");
+    }
+    75% {
+        background-image: url("../assets/Vampire/Death/4.png");
+    }
+    100% {
+        background-image: url("../assets/Vampire/Death/5.png");
+     
+    }
+}
+
+.gameSection{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 0;
+}
+   #context{
+    background-image: linear-gradient(rgba(13, 13, 14, 0.5), rgba(65, 65, 62, 0.5)),url("../assets/Background/Clouds\ 3.png");
+    background-size: cover;
+    
+   }
+
+   #intro{
+    opacity: 0;
+    color: white;
+    width: 50%;
+    text-align: center;
+    margin:15% auto;
+    animation: showText 2s forwards;
+   }
+   @keyframes showText{
+    
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 0.50;
+    }
+    75% {
+        opacity: 0.75;    }
+    100% {
+        opacity: 1;     
+    }
+}
+   #intro p{
+    margin-top: 2%;
+    font-size: 190%;
+   }
+   
+
+   #intro h2{
+    
+    font-size: 200%;
+    margin-bottom: 1%;
+   }
+   
+   
