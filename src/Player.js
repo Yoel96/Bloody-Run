@@ -24,7 +24,7 @@ class Player{
         this.playerSprite.style.left=this.leftPosition + "vw"
         this.playerSprite.style.width=this.playerWidth + "vw"
         this.playerSprite.style.top=this.topPosition + "vh"
-        this.runningAudio= new Audio("../assets/Sound/runningSound.mp3")
+        this.runningAudio= new Audio("./../assets/Sound/runningSound.mp3")
         this.runningAudio.loop=true
         this.showLives()
     }
@@ -40,7 +40,7 @@ class Player{
         for(let i=0;i<this.lives;i++){
 
             let live = document.createElement("img")
-            live.setAttribute("src", "../assets/blood.png")
+            live.setAttribute("src", "./assets/blood.png")
             live.classList.add("liveImage")
             document.getElementById("livesContainer").appendChild(live)
              
