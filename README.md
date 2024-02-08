@@ -1,7 +1,7 @@
 # Bloody-Run
 <div align="center">
   
-<img src=""> 
+<img src="https://github.com/Yoel96/Bloody-Run/blob/main/assets/Play.png"> 
   
   <h1> BLOODY RUN</h1>
  
@@ -21,12 +21,12 @@ The video game takes place on a stormy night in the 19th century, the main chara
 
 Here are some screenshots of the Bloody Run UI
 
-<img src=""> 
-<img src=""> 
+<img src="https://github.com/Yoel96/Bloody-Run/blob/main/assets/castle.png"> 
 
-## Canvas Presentation
 
-You can find a Canvas presentation showing the overview of the project at the following link: [Canvas Presentation]([canvas/presentation/](https://www.canva.com/design/DAFhyZG99Ck/_isF5L4E6LKOLqTQv8G3Pg/view?utm_content=DAFhyZG99Ck&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
+## Play our Game
+
+You can play our game here:([bloody/run/](https://yoel96.github.io/Bloody-Run/)
 
 ## Credits:
 
