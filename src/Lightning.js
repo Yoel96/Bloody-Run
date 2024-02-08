@@ -24,7 +24,7 @@ class Lightning{
         this.lightningSprite.classList.add("lightningSprite")
         this.lightningSprite.style.left= this.leftPosition+"vw"
         document.getElementById("enemiesSpawn").appendChild(this.lightningSprite)
-        this.shockAudio= new Audio("../assets/Sound/shockSound.mp3")
+        this.shockAudio= new Audio("/Bloody-Run/assets/Sound/shockSound.mp3")
         this.move()
      }
 
